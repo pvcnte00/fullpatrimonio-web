@@ -3,61 +3,107 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fullpatrimonio</title>
-  <meta name="description" content="Fullpatrimonio. Asesoría financiera integral. Sitio en construcción.">
-  <!-- Mientras el sitio esté en construcción, se pide a los buscadores no indexarlo. Retirar al publicar. -->
+  <title>Fullpatrimonio | Asesoría financiera integral</title>
+  <meta name="description" content="Asesoría financiera integral con Mónica Jofré Flores. Conoce tu situación, tu familia y tus plazos antes de decidir dónde poner tu dinero.">
+  <!-- Retirar la etiqueta robots al publicar el sitio definitivo. -->
   <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* Colores PROVISORIOS: reemplazar por los valores hex exactos de la guía visual de marca. */
-    :root {
-      --azul-patrimonial: #0b2a4a;
-      --azul-pale: #e8eef5;
-      --blanco: #ffffff;
-      --texto: #1d2b3a;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body {
-      font-family: "Montserrat", system-ui, sans-serif;
-      color: var(--texto);
-      background: var(--azul-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-    main {
-      background: var(--blanco);
-      border-top: 6px solid var(--azul-patrimonial);
-      max-width: 560px;
-      width: 100%;
-      padding: 48px 32px;
-      text-align: center;
-    }
-    h1 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--azul-patrimonial);
-      margin-bottom: 16px;
-    }
-    p { font-size: 1rem; line-height: 1.6; }
-    .estado {
-      margin-top: 24px;
-      font-weight: 600;
-      color: var(--azul-patrimonial);
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/estilos.css">
 </head>
 <body>
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a href="/" aria-label="Fullpatrimonio, inicio">
+        <img src="/assets/img/logo-azul.png" alt="Fullpatrimonio" width="800" height="341">
+      </a>
+    </div>
+  </header>
+
   <main>
-    <h1>Fullpatrimonio</h1>
-    <p>Asesoría financiera integral, pensada para ti y tu familia.</p>
-    <p class="estado">Estamos preparando este sitio. Vuelve pronto.</p>
+    <section class="portada">
+      <div class="contenedor">
+        <h1>Tu patrimonio, con un <span class="clave">plan claro</span>.</h1>
+        <p class="portada__texto">
+          Primero conocemos tu situación, tu familia y tus plazos. Después te recomendamos la solución que corresponde.
+        </p>
+        <div class="portada__accion">
+          <!-- Paso 4: reemplazar este bloque por <a class="btn" href="/diagnostico/">Solicita tu diagnóstico sin costo</a> -->
+          <span class="btn btn--inactivo">Diagnóstico sin costo: disponible muy pronto</span>
+          <p class="nota-boton">Estamos terminando de preparar el formulario.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="seccion__intro">
+          <h2>¿Te reconoces en alguna de estas situaciones?</h2>
+        </div>
+        <div class="tarjetas">
+          <article class="tarjeta">
+            <h3>Tu dinero está quieto</h3>
+            <p>Tienes capital disponible que hoy rinde poco y quieres saber qué alternativas existen según tu plazo.</p>
+          </article>
+          <article class="tarjeta">
+            <h3>Tu familia depende de tu ingreso</h3>
+            <p>Si tu ingreso faltara, ¿la protección que tienes hoy estaría a la altura de lo que necesitan los tuyos?</p>
+          </article>
+          <article class="tarjeta">
+            <h3>Quieres tener claridad</h3>
+            <p>Antes de decidir, quieres entender dónde pondrás tu dinero y cómo verificar a quién se lo confías.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--pale">
+      <div class="contenedor">
+        <div class="seccion__intro">
+          <h2>Un diagnóstico financiero, sin costo</h2>
+          <p>No partimos con un producto. Partimos contigo: calculamos tu situación y te entregamos una cifra concreta para que decidas con información.</p>
+        </div>
+        <ol class="pasos">
+          <li>
+            <h3>Cuéntanos tu situación</h3>
+            <p>Dejas tus datos de contacto y el motivo por el que quieres revisar tus finanzas.</p>
+          </li>
+          <li>
+            <h3>Calculamos tu cifra</h3>
+            <p>Preparamos un diagnóstico según tu caso, a partir de la información que nos entregas.</p>
+          </li>
+          <li>
+            <h3>Lo revisas con Mónica</h3>
+            <p>En una reunión, Mónica te explica el resultado y resuelve tus dudas.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor autoridad">
+        <h2>Mónica Jofré Flores</h2>
+        <p class="cargo">Asesora financiera · Coach Ejecutiva certificada</p>
+        <p>
+          Mónica acumula 25 años de trayectoria en banca, seguros e inversiones. Su método es consultivo: entiende primero tu situación, tu entorno y tu historial, y recién después define qué solución te conviene.
+        </p>
+      </div>
+    </section>
   </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p class="marca">Fullpatrimonio</p>
+      <p class="lema">Propiedades · Inversión · Estrategia</p>
+      <p class="aviso">
+        La información de este sitio es de carácter general y no constituye una recomendación personalizada. Cada decisión se evalúa en una asesoría, según tu caso.
+      </p>
+      <p class="copia">&copy; 2026 Fullpatrimonio</p>
+    </div>
+  </footer>
+
 </body>
 </html>

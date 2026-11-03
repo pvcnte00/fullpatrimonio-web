@@ -1,0 +1,158 @@
+/* Fullpatrimonio. Hoja de estilos base.
+   Paleta y tipografía según la guía visual de marca. */
+
+:root {
+  --azul-patrimonial: #071D3D;
+  --azul-institucional: #103E6C;
+  --azul-accion: #138ED5;
+  --celeste: #61C4F6;
+  --dorado: #D8B65C;
+  --blanco: #FFFFFF;
+  --azul-tinta: #122B49;
+  --azul-pale: #E9F1F8;
+
+  --texto: var(--azul-tinta);
+  --ancho: 1080px;
+  --gutter: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--blanco);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Encabezado */
+.encabezado {
+  background: var(--blanco);
+  border-bottom: 1px solid var(--azul-pale);
+}
+.encabezado .contenedor {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.encabezado img { height: 52px; width: auto; }
+
+/* Tipografía de secciones */
+h1, h2, h3 { line-height: 1.2; }
+h1 { font-weight: 800; font-size: clamp(1.9rem, 5vw, 3rem); }
+h2 { font-weight: 700; font-size: clamp(1.5rem, 3.5vw, 2rem); color: var(--azul-patrimonial); margin-bottom: 8px; }
+h3 { font-weight: 600; font-size: 1.1rem; color: var(--azul-patrimonial); margin-bottom: 8px; }
+p + p { margin-top: 12px; }
+
+.seccion { padding: 56px 0; }
+.seccion--pale { background: var(--azul-pale); }
+.seccion__intro { max-width: 640px; margin-bottom: 32px; }
+
+/* Portada */
+.portada {
+  background: var(--azul-patrimonial);
+  color: var(--blanco);
+  padding: 72px 0 80px;
+}
+.portada h1 { max-width: 720px; }
+.portada h1 .clave { color: var(--celeste); }
+.portada__texto { max-width: 620px; margin-top: 20px; font-size: 1.1rem; font-weight: 500; }
+.portada__accion { margin-top: 32px; }
+
+/* Botón */
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 0;
+  border-radius: 6px;
+  background: var(--dorado);
+  color: var(--azul-patrimonial);
+}
+.btn--inactivo { opacity: 0.85; cursor: default; }
+.nota-boton { margin-top: 12px; font-size: 0.9rem; color: var(--celeste); }
+
+/* Tarjetas */
+.tarjetas {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+.tarjeta {
+  background: var(--blanco);
+  border-left: 4px solid var(--azul-accion);
+  border-radius: 6px;
+  padding: 24px;
+}
+.seccion--pale .tarjeta { box-shadow: 0 1px 2px rgba(7, 29, 61, 0.08); }
+
+/* Pasos */
+.pasos { list-style: none; counter-reset: paso; display: grid; gap: 16px; grid-template-columns: 1fr; }
+.pasos li {
+  counter-increment: paso;
+  background: var(--azul-pale);
+  border-radius: 6px;
+  padding: 24px 24px 24px 72px;
+  position: relative;
+}
+.pasos li::before {
+  content: counter(paso);
+  position: absolute;
+  left: 24px;
+  top: 22px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--azul-patrimonial);
+  color: var(--dorado);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bloque de autoridad */
+.autoridad { max-width: 680px; }
+.autoridad .cargo { font-weight: 600; color: var(--azul-institucional); margin-bottom: 12px; }
+
+/* Pie */
+.pie {
+  background: var(--azul-patrimonial);
+  color: var(--blanco);
+  padding: 40px 0;
+  font-size: 0.9rem;
+}
+.pie .marca { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.pie .lema { color: var(--celeste); margin-top: 4px; }
+.pie .aviso { margin-top: 20px; max-width: 680px; opacity: 0.85; }
+.pie .copia { margin-top: 12px; opacity: 0.7; }
+
+/* Página de confirmación */
+.confirmacion { padding: 72px 0; min-height: 50vh; }
+.confirmacion .contenedor { max-width: 640px; }
+.confirmacion h1 { color: var(--azul-patrimonial); font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 16px; }
+
+/* Pantallas medianas y grandes */
+@media (min-width: 720px) {
+  .tarjetas { grid-template-columns: repeat(3, 1fr); }
+  .pasos { grid-template-columns: repeat(3, 1fr); }
+  .pasos li { padding: 72px 24px 24px; }
+  .pasos li::before { left: 24px; top: 24px; }
+}
