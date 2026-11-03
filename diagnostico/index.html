@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solicita tu diagnóstico financiero | Fullpatrimonio</title>
+  <meta name="description" content="Solicita tu diagnóstico financiero sin costo y revísalo con Mónica Jofré Flores.">
+  <!-- Retirar la etiqueta robots al publicar el sitio definitivo. -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a href="/" aria-label="Fullpatrimonio, inicio">
+        <img src="/assets/img/logo-azul.png" alt="Fullpatrimonio" width="800" height="341">
+      </a>
+    </div>
+  </header>
+
+  <main class="seccion">
+    <div class="contenedor contenedor--angosto">
+      <h1 class="titulo-pagina">Solicita tu diagnóstico financiero sin costo</h1>
+      <p>Déjanos tus datos de contacto. Te escribiremos para coordinar una reunión con Mónica, donde revisarán juntos tu situación.</p>
+
+      <form id="form-diagnostico" class="form" novalidate>
+        <div class="form__campo">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" autocomplete="name" maxlength="100" required>
+        </div>
+
+        <div class="form__campo">
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" name="correo" type="email" autocomplete="email" maxlength="120" required>
+        </div>
+
+        <div class="form__campo">
+          <label for="whatsapp">WhatsApp</label>
+          <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="+56 9 1234 5678" required>
+        </div>
+
+        <!-- Campo trampa para programas automáticos. Las personas no lo ven. -->
+        <div class="form__trampa" aria-hidden="true">
+          <label for="sitio_web">No completar este campo</label>
+          <input id="sitio_web" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="form__check">
+          <input id="consentimiento" name="consentimiento" type="checkbox" required>
+          <label for="consentimiento">
+            Acepto que Mónica Jofré Flores use mis datos para contactarme y coordinar mi diagnóstico, según la
+            <a href="/privacidad/" target="_blank" rel="noopener">política de privacidad</a>.
+          </label>
+        </div>
+
+        <div class="form__check">
+          <input id="info_correo" name="info_correo" type="checkbox">
+          <label for="info_correo">Quiero recibir por correo información y contenido sobre finanzas (opcional).</label>
+        </div>
+
+        <p id="form-mensaje" class="form__mensaje" role="status" aria-live="polite"></p>
+
+        <button class="btn" type="submit">Solicitar diagnóstico</button>
+
+        <p class="form__nota">Por este formulario no te pediremos claves ni datos bancarios.</p>
+      </form>
+
+      <p class="alternativa">
+        ¿Prefieres escribir directamente?
+        <a id="enlace-whatsapp" href="https://wa.me/56934545238?text=Hola%2C%20quiero%20solicitar%20mi%20diagn%C3%B3stico%20financiero.%20WEB" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>.
+      </p>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p class="marca">Fullpatrimonio</p>
+      <p class="lema">Propiedades · Inversión · Estrategia</p>
+      <p class="aviso">
+        La información de este sitio es de carácter general y no constituye una recomendación personalizada. Cada decisión se evalúa en una asesoría, según tu caso.
+      </p>
+      <p class="copia"><a href="/privacidad/">Política de privacidad</a> · &copy; 2026 Fullpatrimonio</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/origen.js"></script>
+  <script src="/assets/js/formulario.js"></script>
+</body>
+</html>
