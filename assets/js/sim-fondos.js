@@ -11,15 +11,15 @@
   var plazoMax = 40;
   S.montosConFormato(form);
 
-  function actualizar() {
+  function actualizar(silencioso) {
     var inicial = S.leerMonto(el("fm-inicial")), aporte = S.leerMonto(el("fm-aporte"));
     var anos = S.leerEntero(el("fm-plazo"));
     var p = perfiles[form.elements["fm-perfil"].value] || perfiles.moderado;
-    var msg = el("fm-mensaje");
+    var msg = silencioso ? S.mudo : el("fm-mensaje");
     if (inicial > 1e11 || aporte > 1e10) { S.mensaje(msg, "Revisa los montos ingresados."); return; }
     if (!(anos >= 1 && anos <= plazoMax)) { S.mensaje(msg, "El plazo debe estar entre 1 y " + plazoMax + " años."); return; }
     if (inicial === 0 && aporte === 0) { S.mensaje(msg, "Ingresa un monto inicial o un aporte mensual."); return; }
-    S.mensaje(msg, "");
+    S.mensaje(el("fm-mensaje"), "");
 
     var esc = [
       { id: "desf", nombre: "Desfavorable", tasa: p.desf, color: "#8AA3BD", punteada: true },
@@ -52,6 +52,7 @@
   }
 
   form.addEventListener("submit", function (e) { e.preventDefault(); actualizar(); });
+  S.enVivo(form, actualizar);
   Array.prototype.forEach.call(form.elements["fm-perfil"], function (r) { r.addEventListener("change", actualizar); });
 
   S.conParametros(function (v) {

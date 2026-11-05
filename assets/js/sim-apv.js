@@ -27,15 +27,15 @@
     return Math.max(0, (baseMensual / P.utm) * (P.factores[i] / 100) * P.utm - P.rebajas[i] * P.utm);
   }
 
-  function actualizar() {
+  function actualizar(silencioso) {
     var renta = S.leerMonto(el("apv-renta")), aporte = S.leerMonto(el("apv-aporte"));
     var anos = S.leerEntero(el("apv-plazo")), tasa = S.leerDecimal(el("apv-tasa"));
-    var msg = el("apv-mensaje");
+    var msg = silencioso ? S.mudo : el("apv-mensaje");
     if (!(renta > 0 && renta <= 1e9)) { S.mensaje(msg, "Ingresa tu renta líquida imponible mensual."); return; }
     if (!(aporte > 0 && aporte <= 1e9)) { S.mensaje(msg, "Ingresa el aporte mensual que quieres hacer."); return; }
     if (!(anos >= 1 && anos <= P.plazoMax)) { S.mensaje(msg, "Los años hasta tu jubilación deben estar entre 1 y " + P.plazoMax + "."); return; }
     if (!(tasa >= P.tasaMin && tasa <= P.tasaMax)) { S.mensaje(msg, "La rentabilidad debe estar entre " + S.dec.format(P.tasaMin) + "% y " + S.dec.format(P.tasaMax) + "% anual."); return; }
-    S.mensaje(msg, "");
+    S.mensaje(el("apv-mensaje"), "");
 
     // Régimen A: bonificación fiscal sobre lo ahorrado en el año, con tope en UTM.
     var bonifA = Math.min((P.bonifPct / 100) * aporte * 12, P.bonifTopeUtm * P.utm);
@@ -73,6 +73,7 @@
   }
 
   form.addEventListener("submit", function (e) { e.preventDefault(); actualizar(); });
+  S.enVivo(form, actualizar);
 
   S.conParametros(function (v) {
     P.uf = v("uf_valor", P.uf); P.utm = v("utm_valor", P.utm);

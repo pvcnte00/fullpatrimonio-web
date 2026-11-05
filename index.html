@@ -29,7 +29,7 @@
           <li><a href="/simulador-seguros/">Simular seguro</a></li>
           <li><a href="/diagnostico/">Contacto</a></li>
           <li><a href="/privacidad/">Privacidad</a></li>
-          <li class="menu__cta"><a href="/diagnostico/">Agenda tu diagnóstico</a></li>
+          <li class="menu__cta"><a href="/diagnostico/">Solicitar diagnóstico</a></li>
         </ul>
       </nav>
     </div>
@@ -38,62 +38,60 @@
   <main>
     <section class="portada">
       <div class="contenedor portada__grid">
-        <div>
-          <p class="antetitulo antetitulo--claro">Asesoría financiera integral</p>
+        <div class="portada__texto-col">
           <h1>Tu patrimonio, con un <span class="clave">plan claro</span>.</h1>
-          <p class="portada__texto">Primero conocemos tu situación, tu familia y tus plazos. Después te recomendamos la solución que corresponde.</p>
+          <p class="portada__texto">Primero conocemos tu situación, tu familia y tus plazos. Después te recomendamos la solución que corresponde. El diagnóstico no tiene costo.</p>
           <div class="portada__accion acciones">
-            <a class="btn" href="/diagnostico/">Solicita tu diagnóstico sin costo</a>
-            <a class="btn btn--secundario" href="/simulador-inversion/">Simula tu inversión</a>
+            <a class="btn" href="/diagnostico/">Solicitar diagnóstico</a>
+            <a class="btn btn--secundario" href="/simulador-inversion/">Ver simuladores</a>
           </div>
         </div>
-        <aside class="portada__tarjeta" aria-label="Qué incluye el diagnóstico">
-          <div class="portada__tarjeta-cabeza">
-            <h2>Tu diagnóstico financiero</h2>
-            <span class="sello">Sin costo</span>
+        <fieldset class="selector">
+          <legend>¿Por dónde empiezas?</legend>
+          <p class="selector__ayuda">Elige la situación que más se parece a la tuya.</p>
+          <div class="selector__opciones">
+              <div class="selector__opcion"><input type="radio" name="situacion" id="sit-quieto" value="quieto" checked><label for="sit-quieto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Tengo dinero que hoy rinde poco</label></div>
+              <div class="selector__opcion"><input type="radio" name="situacion" id="sit-familia" value="familia"><label for="sit-familia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 2.2-5.5 5-5.5s5 2.5 5 5.5M13.5 20c0-2.5 1.6-4.5 3.5-4.5s3.5 2 3.5 4.5"/></svg>Mi familia depende de mi ingreso</label></div>
+              <div class="selector__opcion"><input type="radio" name="situacion" id="sit-pension" value="pension"><label for="sit-pension"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Quiero mejorar mi pensión</label></div>
+              <div class="selector__opcion"><input type="radio" name="situacion" id="sit-entender" value="entender"><label for="sit-entender"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Quiero entender antes de decidir</label></div>
           </div>
-          <ul class="lista-check">
-            <li><span class="icono-circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><strong>Tu situación actual</strong><small>Ingresos, ahorros, deudas y protección.</small></span></li>
-            <li><span class="icono-circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><strong>Tus metas y tus plazos</strong><small>Lo que quieres lograr y para cuándo.</small></span></li>
-            <li><span class="icono-circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><strong>Una cifra concreta</strong><small>Para que decidas con información.</small></span></li>
-          </ul>
-          <p class="portada__tarjeta-pie">Lo revisas en una reunión con Mónica, que resuelve tus dudas.</p>
-        </aside>
-      </div>
-    </section>
-
-    <section class="confianza" aria-label="Por qué Fullpatrimonio">
-      <div class="contenedor">
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.2L7 21l5-3 5 3-1.5-7.8"/></svg>25 años en banca, seguros e inversiones</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 9.5h8M8 12.5h5"/></svg>Método consultivo: primero tu situación</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Diagnóstico financiero sin costo</li>
-        </ul>
+          <div class="selector__respuesta" data-respuesta="quieto">
+            <p>Revisamos cuánto tienes disponible, para cuándo podrías necesitarlo y cuánto riesgo estás dispuesto a asumir. Con eso comparamos alternativas según tu plazo.</p>
+            <a class="selector__simulador" href="/simulador-inversion/#fondos-mutuos">Simula una inversión en fondos mutuos</a>
+            <div class="acciones"><a class="btn" href="/diagnostico/">Solicitar diagnóstico</a></div>
+          </div>
+          <div class="selector__respuesta" data-respuesta="familia">
+            <p>Calculamos cuánto necesitaría tu familia si tu ingreso faltara, y cuánto de eso ya cubren tus ahorros y los seguros que tienes.</p>
+            <a class="selector__simulador" href="/simulador-seguros/">Calcula cuánto seguro de vida necesitarías</a>
+            <div class="acciones"><a class="btn" href="/diagnostico/">Solicitar diagnóstico</a></div>
+          </div>
+          <div class="selector__respuesta" data-respuesta="pension">
+            <p>Revisamos cuánto podrías ahorrar al mes y qué régimen de APV te conviene según tu renta, para que el ahorro tenga un beneficio tributario.</p>
+            <a class="selector__simulador" href="/simulador-inversion/#apv">Compara el APV régimen A y B</a>
+            <div class="acciones"><a class="btn" href="/diagnostico/">Solicitar diagnóstico</a></div>
+          </div>
+          <div class="selector__respuesta" data-respuesta="entender">
+            <p>Te explicamos qué es cada alternativa, cuánto cuesta y cómo verificar que la institución esté autorizada antes de entregar tu dinero.</p>
+            <a class="selector__simulador" href="/productos/">Lee qué es cada producto</a>
+            <div class="acciones"><a class="btn" href="/diagnostico/">Solicitar diagnóstico</a></div>
+          </div>
+        </fieldset>
       </div>
     </section>
 
     <section class="seccion">
-      <div class="contenedor">
-        <div class="seccion__intro">
-          <p class="antetitulo">Para quién es</p>
-          <h2>¿Te reconoces en alguna de estas situaciones?</h2>
-        </div>
-        <div class="tarjetas">
-          <article class="tarjeta">
-            <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-            <h3>Tu dinero está quieto</h3>
-            <p>Tienes capital disponible que hoy rinde poco y quieres saber qué alternativas existen según tu plazo.</p>
-          </article>
-          <article class="tarjeta">
-            <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 2.2-5.5 5-5.5s5 2.5 5 5.5M13.5 20c0-2.5 1.6-4.5 3.5-4.5s3.5 2 3.5 4.5"/></svg></div>
-            <h3>Tu familia depende de tu ingreso</h3>
-            <p>Si tu ingreso faltara, ¿la protección que tienes hoy estaría a la altura de lo que necesitan los tuyos?</p>
-          </article>
-          <article class="tarjeta">
-            <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
-            <h3>Quieres tener claridad</h3>
-            <p>Antes de decidir, quieres entender dónde pondrás tu dinero y cómo verificar a quién se lo confías.</p>
-          </article>
+      <div class="contenedor asesora">
+        <!-- Reemplazar las iniciales por la foto: <img src="/assets/img/monica.jpg" alt="Mónica Jofré Flores"> -->
+        <div class="retrato" aria-hidden="true">MJ</div>
+        <div class="asesora__texto">
+          <h2>Te asesora Mónica Jofré Flores</h2>
+          <p class="cargo">Asesora financiera y Coach Ejecutiva certificada</p>
+          <p>Su método es consultivo: entiende primero tu situación, tu entorno y tu historial, y recién después define qué solución te conviene.</p>
+          <ul class="credenciales">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>25 años de trayectoria</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Banca, seguros e inversiones</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Diagnóstico sin costo</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -101,23 +99,13 @@
     <section class="seccion seccion--pale">
       <div class="contenedor">
         <div class="seccion__intro">
-          <p class="antetitulo">Cómo funciona</p>
-          <h2>Un diagnóstico financiero, sin costo</h2>
+          <h2>Cómo funciona el diagnóstico</h2>
           <p>No partimos con un producto. Partimos contigo: calculamos tu situación y te entregamos una cifra concreta para que decidas con información.</p>
         </div>
-        <ol class="pasos">
-          <li>
-            <h3>Cuéntanos tu situación</h3>
-            <p>Dejas tus datos de contacto y el motivo por el que quieres revisar tus finanzas.</p>
-          </li>
-          <li>
-            <h3>Calculamos tu cifra</h3>
-            <p>Preparamos un diagnóstico según tu caso, a partir de la información que nos entregas.</p>
-          </li>
-          <li>
-            <h3>Lo revisas con Mónica</h3>
-            <p>En una reunión, Mónica te explica el resultado y resuelve tus dudas.</p>
-          </li>
+        <ol class="linea-tiempo">
+          <li><h3>Cuéntanos tu situación</h3><p>Dejas tus datos de contacto y te escribimos para coordinar.</p></li>
+          <li><h3>Calculamos tu cifra</h3><p>Preparamos un diagnóstico según tu caso, con la información que nos entregas.</p></li>
+          <li><h3>Lo revisas con Mónica</h3><p>En una reunión te explica el resultado y resuelve tus dudas.</p></li>
         </ol>
       </div>
     </section>
@@ -125,43 +113,27 @@
     <section class="seccion">
       <div class="contenedor">
         <div class="seccion__intro">
-          <p class="antetitulo">Herramientas</p>
           <h2>Simula antes de conversar</h2>
           <p>Calculadoras simples, con los supuestos a la vista, para que llegues a la reunión con una primera idea.</p>
         </div>
-        <div class="indice-sim">
-          <a href="/simulador-inversion/#interes-compuesto"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><rect x="5" y="13" width="3" height="5" rx="0.5"/><rect x="10.5" y="9" width="3" height="9" rx="0.5"/><rect x="16" y="5" width="3" height="13" rx="0.5"/></svg></span><strong>Interés compuesto</strong>Cómo crece un ahorro en el tiempo.</a>
-          <a href="/simulador-inversion/#fondos-mutuos"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"/><path d="M5 15l4-4 3 3 6-7"/><path d="M14 7h4v4"/></svg></span><strong>Fondos mutuos</strong>Tres escenarios según tu perfil.</a>
-          <a href="/simulador-inversion/#apv"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span><strong>APV</strong>Régimen A o B y beneficio tributario.</a>
-          <a href="/simulador-seguros/"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><strong>Seguro de vida</strong>Cuánta protección necesitaría tu familia.</a>
-        </div>
+        <ul class="filas">
+          <li><a href="/simulador-inversion/#interes-compuesto"><strong>¿Cuánto podría crecer mi ahorro en el tiempo?</strong><span>Interés compuesto</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          <li><a href="/simulador-inversion/#fondos-mutuos"><strong>¿Qué podría pasar con mi inversión en un fondo mutuo?</strong><span>Fondos mutuos, en tres escenarios</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          <li><a href="/simulador-inversion/#apv"><strong>¿Me conviene el APV régimen A o B?</strong><span>Ahorro Previsional Voluntario</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          <li><a href="/simulador-inversion/#inmobiliario"><strong>¿El arriendo alcanzaría para pagar el dividendo?</strong><span>Inversión inmobiliaria</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          <li><a href="/simulador-seguros/"><strong>¿Cuánto seguro de vida necesitaría mi familia?</strong><span>Necesidad de seguro de vida</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        </ul>
       </div>
     </section>
 
-    <section class="seccion seccion--oscura">
-      <div class="contenedor autoridad">
-        <div>
-          <p class="autoridad__cifra">25</p>
-          <p class="autoridad__cifra-texto">años de trayectoria en banca, seguros e inversiones</p>
-        </div>
-        <div class="autoridad__texto">
-          <p class="antetitulo antetitulo--claro">Quién te asesora</p>
-          <h2>Mónica Jofré Flores</h2>
-          <p class="cargo">Asesora financiera · Coach Ejecutiva certificada</p>
-          <p>Su método es consultivo: entiende primero tu situación, tu entorno y tu historial, y recién después define qué solución te conviene.</p>
-          <div class="autoridad__accion"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico</a></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="banda-cta banda-cta--suelta">
+    <section class="banda-cta">
       <div class="contenedor">
         <div class="banda-cta__caja">
           <div>
             <h2>¿Conversamos sobre tu situación?</h2>
             <p>Déjanos tus datos y coordinamos una reunión con Mónica.</p>
           </div>
-          <a class="btn" href="/diagnostico/">Solicita tu diagnóstico</a>
+          <a class="btn" href="/diagnostico/">Solicitar diagnóstico</a>
         </div>
       </div>
     </section>

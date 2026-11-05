@@ -12,7 +12,7 @@
 
   function pct(v) { return S.dec.format(v * 100) + "%"; }
 
-  function actualizar() {
+  function actualizar(silencioso) {
     var precioUf = S.leerDecimal(el("inm-precio"));
     var pie = S.leerDecimal(el("inm-pie")) / 100;
     var tasa = S.leerDecimal(el("inm-tasa"));
@@ -23,7 +23,7 @@
     var vacancia = S.leerDecimal(el("inm-vacancia")) / 100;
     var mantencion = S.leerDecimal(el("inm-mantencion")) / 100;
     var compra = S.leerDecimal(el("inm-compra")) / 100;
-    var msg = el("inm-mensaje");
+    var msg = silencioso ? S.mudo : el("inm-mensaje");
 
     if (!(precioUf >= 100 && precioUf <= 100000)) { S.mensaje(msg, "El precio debe estar entre 100 y 100.000 UF."); return; }
     if (!(pie >= 0 && pie <= 1)) { S.mensaje(msg, "El pie debe estar entre 0% y 100%."); return; }
@@ -33,7 +33,7 @@
     if (!(vacancia >= 0 && vacancia < 1) || !(mantencion >= 0 && mantencion <= 0.1) || !(compra >= 0 && compra <= 0.2)) {
       S.mensaje(msg, "Revisa vacancia, mantención y gastos de compra."); return;
     }
-    S.mensaje(msg, "");
+    S.mensaje(el("inm-mensaje"), "");
 
     var precio = precioUf * P.uf;
     var creditoUf = precioUf * (1 - pie);
@@ -72,6 +72,7 @@
   }
 
   form.addEventListener("submit", function (e) { e.preventDefault(); actualizar(); });
+  S.enVivo(form, actualizar);
 
   S.conParametros(function (v) {
     P.uf = v("uf_valor", P.uf);

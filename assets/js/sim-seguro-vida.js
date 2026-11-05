@@ -6,7 +6,7 @@
   var P = { uf: 40000, anosMax: 40 };
   S.montosConFormato(form);
 
-  function actualizar() {
+  function actualizar(silencioso) {
     var gastos = S.leerMonto(el("sv-gastos"));
     var anos = S.leerEntero(el("sv-anos"));
     var deudas = S.leerMonto(el("sv-deudas"));
@@ -14,10 +14,10 @@
     var otros = S.leerMonto(el("sv-otros"));
     var ahorros = S.leerMonto(el("sv-ahorros"));
     var seguros = S.leerMonto(el("sv-seguros"));
-    var msg = el("sv-mensaje");
+    var msg = silencioso ? S.mudo : el("sv-mensaje");
     if (!(gastos > 0)) { S.mensaje(msg, "Ingresa los gastos mensuales de tu familia."); return; }
     if (!(anos >= 1 && anos <= P.anosMax)) { S.mensaje(msg, "Los años de apoyo deben estar entre 1 y " + P.anosMax + "."); return; }
-    S.mensaje(msg, "");
+    S.mensaje(el("sv-mensaje"), "");
 
     var sostener = gastos * 12 * anos;
     var necesidades = sostener + deudas + educacion + otros;
@@ -42,6 +42,7 @@
   }
 
   form.addEventListener("submit", function (e) { e.preventDefault(); actualizar(); });
+  S.enVivo(form, actualizar);
 
   S.conParametros(function (v) {
     P.uf = v("uf_valor", P.uf);

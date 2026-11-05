@@ -58,8 +58,10 @@
 
   function escala(maximo) {
     if (maximo <= 0) { return 1; }
-    var paso = Math.pow(10, Math.floor(Math.log10(maximo)));
-    return Math.ceil(maximo / paso) * paso;
+    var bruto = maximo / 4, pot = Math.pow(10, Math.floor(Math.log10(bruto)));
+    var pasos = [1, 2, 2.5, 5, 10];
+    for (var i = 0; i < pasos.length; i++) { if (pasos[i] * pot >= bruto) { return pasos[i] * pot * 4; } }
+    return 10 * pot * 4;
   }
 
   function ejes(svg, izq, der, arriba, areaH, ancho, tope, y) {
@@ -136,12 +138,39 @@
     });
   }
 
+  // Recalcula mientras la persona escribe, sin mostrar errores hasta que pulse Calcular.
+  var mudo = { className: "", textContent: "" };
+  function enVivo(form, fn) {
+    var t = null;
+    var lanzar = function () { clearTimeout(t); t = setTimeout(function () { fn(true); }, 300); };
+    form.addEventListener("input", lanzar);
+    form.addEventListener("change", lanzar);
+  }
+
+  // Barra de calculadoras: marca la sección visible.
+  var barra = document.querySelector(".pestanas");
+  if (barra && "IntersectionObserver" in window) {
+    var enlaces = barra.querySelectorAll("a[href^='#']");
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (en) {
+        if (!en.isIntersecting) { return; }
+        Array.prototype.forEach.call(enlaces, function (a) {
+          a.setAttribute("aria-current", a.getAttribute("href") === "#" + en.target.id ? "true" : "false");
+        });
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    Array.prototype.forEach.call(enlaces, function (a) {
+      var sec = document.querySelector(a.getAttribute("href"));
+      if (sec) { obs.observe(sec); }
+    });
+  }
+
   window.FP_SIM = {
     pesos: pesos, numero: numero, dec: dec,
     leerMonto: leerMonto, leerDecimal: leerDecimal, leerEntero: leerEntero,
     formatearMonto: formatearMonto, montosConFormato: montosConFormato, ponerDecimal: ponerDecimal,
     proyectar: proyectar, barras: barras, lineas: lineas, compacto: compacto,
-    mensaje: mensaje, fechaLegible: fechaLegible, conParametros: conParametros
+    mensaje: mensaje, mudo: mudo, enVivo: enVivo, fechaLegible: fechaLegible, conParametros: conParametros
   };
 
   // Fecha de actualización de parámetros, si la página tiene dónde mostrarla.

@@ -51,8 +51,8 @@
     var ancho = 600, alto = 260, izq = 64, der = 8, arriba = 12, abajo = 28;
     var datos = filas.slice(1);
     var maximo = Math.max.apply(null, datos.map(function (f) { return f.saldo; })) || 1;
-    var paso = Math.pow(10, Math.floor(Math.log10(maximo)));
-    var tope = Math.ceil(maximo / paso) * paso;
+    var bruto = maximo / 4, pot = Math.pow(10, Math.floor(Math.log10(bruto)));
+    var tope = [1, 2, 2.5, 5, 10].map(function (k) { return k * pot * 4; }).filter(function (t) { return t >= maximo; })[0];
     var areaW = ancho - izq - der, areaH = alto - arriba - abajo;
     var barra = areaW / datos.length;
     var gap = Math.min(4, barra * 0.2);
@@ -87,12 +87,15 @@
     el("ic-tabla").innerHTML = html;
   }
 
+  var silencio = false;
   function error(texto) {
+    if (silencio) { return; }
     mensaje.className = "form__mensaje form__mensaje--error";
     mensaje.textContent = texto;
   }
 
-  function actualizar() {
+  function actualizar(silencioso) {
+    silencio = !!silencioso;
     var inicial = leerMonto(campos.inicial);
     var aporte = leerMonto(campos.aporte);
     var anos = Number(String(campos.plazo.value).replace(/[^0-9]/g, ""));
@@ -125,6 +128,7 @@
   campos.aporte.addEventListener("blur", function () { formatearMonto(campos.aporte); });
   campos.tasa.addEventListener("input", function () { tasaEditada = true; });
   form.addEventListener("submit", function (e) { e.preventDefault(); formatearMonto(campos.inicial); formatearMonto(campos.aporte); actualizar(); });
+  if (window.FP_SIM) { window.FP_SIM.enVivo(form, actualizar); }
 
   // Parámetros desde la planilla (o el archivo local). Si no llegan, quedan los valores por defecto.
   (window.FP_PARAMETROS || Promise.resolve({ valores: {} })).then(function (p) {

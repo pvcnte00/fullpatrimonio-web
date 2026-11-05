@@ -29,7 +29,7 @@
           <li><a href="/simulador-seguros/">Simular seguro</a></li>
           <li><a href="/diagnostico/">Contacto</a></li>
           <li><a href="/privacidad/">Privacidad</a></li>
-          <li class="menu__cta"><a href="/diagnostico/">Agenda tu diagnóstico</a></li>
+          <li class="menu__cta"><a href="/diagnostico/">Solicitar diagnóstico</a></li>
         </ul>
       </nav>
     </div>
@@ -38,24 +38,27 @@
   <main>
   <section class="cabecera-pagina">
     <div class="contenedor">
-      <p class="antetitulo antetitulo--claro">Simuladores</p>
       <h1>Simulador de inversión</h1>
         <p>Estima cómo podría crecer tu ahorro según el monto, el plazo y la rentabilidad que supongas. Cada calculadora muestra los supuestos que usa.</p>
       <p class="fecha-parametros" id="parametros-fecha"></p>
     </div>
   </section>
+  <nav class="pestanas" aria-label="Calculadoras">
+    <div class="contenedor">
+      <ul>
+        <li><a href="#interes-compuesto">Interés compuesto</a></li>
+        <li><a href="#fondos-mutuos">Fondos mutuos</a></li>
+        <li><a href="#apv">APV</a></li>
+        <li><a href="#inmobiliario">Inversión inmobiliaria</a></li>
+      </ul>
+    </div>
+  </nav>
   <div class="seccion seccion--pale">
     <div class="contenedor">
 
-      <nav class="indice-sim" aria-label="Calculadoras disponibles">
-        <a href="#interes-compuesto"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><rect x="5" y="13" width="3" height="5" rx="0.5"/><rect x="10.5" y="9" width="3" height="9" rx="0.5"/><rect x="16" y="5" width="3" height="13" rx="0.5"/></svg></span><strong>Interés compuesto</strong>Cómo crece un ahorro en el tiempo.<small>Herramienta base</small></a>
-        <a href="#fondos-mutuos"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"/><path d="M5 15l4-4 3 3 6-7"/><path d="M14 7h4v4"/></svg></span><strong>Fondos mutuos</strong>Proyección en tres escenarios.<small>Riesgo: bajo a alto, según el perfil</small></a>
-        <a href="#apv"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span><strong>APV</strong>Régimen A o B y beneficio tributario.<small>Riesgo: según el fondo donde inviertas</small></a>
-        <a href="#inmobiliario"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-5h4v5"/></svg></span><strong>Inversión inmobiliaria</strong>Dividendo, flujo mensual y rentabilidad.<small>Liquidez baja</small></a>
-      </nav>
-
       <section class="simulador" id="interes-compuesto" aria-labelledby="titulo-ic">
         <h2 id="titulo-ic">Interés compuesto</h2>
+        <p class="sim-meta">Herramienta base: sirve para cualquier ahorro</p>
         <p>El interés compuesto significa que las ganancias de cada período también generan ganancias en los siguientes. Por eso el plazo pesa tanto como el monto.</p>
 
         <div class="simulador__cuerpo">
@@ -118,11 +121,12 @@
         <div class="advertencia">
           <p><strong>Esta es una simulación referencial.</strong> El resultado depende de los supuestos indicados, que pueden no cumplirse. La rentabilidad no está garantizada: puede ser mayor, menor o incluso negativa, y lo que ocurrió en el pasado no asegura lo que pasará. No es una recomendación de inversión ni considera tu situación completa. Para revisar tu caso, agenda una reunión con Mónica.</p>
         </div>
-        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico sin costo</a></p>
+        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Solicitar diagnóstico</a></p>
       </section>
 
       <section class="simulador" id="fondos-mutuos" aria-labelledby="titulo-fm">
         <h2 id="titulo-fm">Fondos mutuos</h2>
+        <p class="sim-meta">Riesgo: de bajo a alto, según el perfil</p>
         <p>Proyecta un ahorro en fondos mutuos según el perfil de riesgo. Como la rentabilidad de un fondo cambia año a año, el resultado se muestra en tres escenarios.</p>
         <div class="simulador__cuerpo">
           <form id="form-fm" class="form" novalidate>
@@ -180,11 +184,12 @@
         <div class="advertencia">
           <p><strong>Esta es una simulación referencial.</strong> El resultado depende de los supuestos indicados, que pueden no cumplirse. La rentabilidad no está garantizada: puede ser mayor, menor o incluso negativa, y lo que ocurrió en el pasado no asegura lo que pasará. No es una recomendación de inversión ni considera tu situación completa. Para revisar tu caso, agenda una reunión con Mónica.</p>
         </div>
-        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico sin costo</a></p>
+        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Solicitar diagnóstico</a></p>
       </section>
 
       <section class="simulador" id="apv" aria-labelledby="titulo-apv">
         <h2 id="titulo-apv">Ahorro Previsional Voluntario (APV)</h2>
+        <p class="sim-meta">Riesgo: según el fondo donde inviertas</p>
         <p>Compara el beneficio tributario de los regímenes A y B según tu renta y tu aporte, y estima cuánto podrías tener al jubilar.</p>
         <div class="simulador__cuerpo">
           <form id="form-apv" class="form" novalidate>
@@ -248,11 +253,12 @@
         <div class="advertencia">
           <p><strong>Esta es una simulación referencial.</strong> El resultado depende de los supuestos indicados, que pueden no cumplirse. La rentabilidad no está garantizada: puede ser mayor, menor o incluso negativa, y lo que ocurrió en el pasado no asegura lo que pasará. No es una recomendación de inversión ni considera tu situación completa. Para revisar tu caso, agenda una reunión con Mónica.</p> <p>Esta simulación tampoco es una asesoría tributaria.</p>
         </div>
-        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico sin costo</a></p>
+        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Solicitar diagnóstico</a></p>
       </section>
 
       <section class="simulador" id="inmobiliario" aria-labelledby="titulo-inm">
         <h2 id="titulo-inm">Inversión inmobiliaria</h2>
+        <p class="sim-meta">Liquidez baja: vender una propiedad toma tiempo</p>
         <p>Estima si el arriendo de una propiedad cubriría el dividendo y los gastos, y qué rentabilidad tendría sobre su precio.</p>
         <div class="simulador__cuerpo">
           <form id="form-inm" class="form" novalidate>
@@ -340,7 +346,7 @@
         <div class="advertencia">
           <p><strong>Esta es una simulación referencial.</strong> El resultado depende de los supuestos indicados, que pueden no cumplirse. La rentabilidad no está garantizada: puede ser mayor, menor o incluso negativa, y lo que ocurrió en el pasado no asegura lo que pasará. No es una recomendación de inversión ni considera tu situación completa. Para revisar tu caso, agenda una reunión con Mónica.</p> <p>Esta simulación no es una tasación ni una evaluación de crédito.</p>
         </div>
-        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico sin costo</a></p>
+        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Solicitar diagnóstico</a></p>
       </section>
     </div>
   </div>
