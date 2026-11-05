@@ -21,7 +21,7 @@
         <img src="/assets/img/logo-azul.png" alt="Fullpatrimonio" width="800" height="341">
       </a>
       <nav class="menu" aria-label="Menú principal">
-        <button class="menu__boton" type="button" aria-expanded="false" aria-controls="menu-lista">Menú</button>
+        <button class="menu__boton" type="button" aria-expanded="false" aria-controls="menu-lista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menú</button>
         <ul class="menu__lista" id="menu-lista">
           <li><a href="/">Inicio</a></li>
           <li><a href="/productos/">Productos</a></li>
@@ -29,21 +29,29 @@
           <li><a href="/simulador-seguros/">Simular seguro</a></li>
           <li><a href="/diagnostico/">Contacto</a></li>
           <li><a href="/privacidad/">Privacidad</a></li>
+          <li class="menu__cta"><a href="/diagnostico/">Agenda tu diagnóstico</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="seccion">
+  <main>
+  <section class="cabecera-pagina">
     <div class="contenedor">
-      <h1 class="titulo-pagina">Simulador de inversión</h1>
-      <p class="seccion__intro">Estima cómo podría crecer tu ahorro según el monto, el plazo y la rentabilidad que supongas. Cada calculadora muestra los supuestos que usa. <span id="parametros-fecha"></span></p>
+      <p class="antetitulo antetitulo--claro">Simuladores</p>
+      <h1>Simulador de inversión</h1>
+        <p>Estima cómo podría crecer tu ahorro según el monto, el plazo y la rentabilidad que supongas. Cada calculadora muestra los supuestos que usa.</p>
+      <p class="fecha-parametros" id="parametros-fecha"></p>
+    </div>
+  </section>
+  <div class="seccion seccion--pale">
+    <div class="contenedor">
 
       <nav class="indice-sim" aria-label="Calculadoras disponibles">
-        <a href="#interes-compuesto"><strong>Interés compuesto</strong>Cómo crece un ahorro en el tiempo.<small>Herramienta base</small></a>
-        <a href="#fondos-mutuos"><strong>Fondos mutuos</strong>Proyección en tres escenarios.<small>Riesgo: bajo a alto, según el perfil</small></a>
-        <a href="#apv"><strong>APV</strong>Régimen A o B y beneficio tributario.<small>Riesgo: según el fondo donde inviertas</small></a>
-        <a href="#inmobiliario"><strong>Inversión inmobiliaria</strong>Dividendo, flujo mensual y rentabilidad.<small>Liquidez baja</small></a>
+        <a href="#interes-compuesto"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><rect x="5" y="13" width="3" height="5" rx="0.5"/><rect x="10.5" y="9" width="3" height="9" rx="0.5"/><rect x="16" y="5" width="3" height="13" rx="0.5"/></svg></span><strong>Interés compuesto</strong>Cómo crece un ahorro en el tiempo.<small>Herramienta base</small></a>
+        <a href="#fondos-mutuos"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"/><path d="M5 15l4-4 3 3 6-7"/><path d="M14 7h4v4"/></svg></span><strong>Fondos mutuos</strong>Proyección en tres escenarios.<small>Riesgo: bajo a alto, según el perfil</small></a>
+        <a href="#apv"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span><strong>APV</strong>Régimen A o B y beneficio tributario.<small>Riesgo: según el fondo donde inviertas</small></a>
+        <a href="#inmobiliario"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-5h4v5"/></svg></span><strong>Inversión inmobiliaria</strong>Dividendo, flujo mensual y rentabilidad.<small>Liquidez baja</small></a>
       </nav>
 
       <section class="simulador" id="interes-compuesto" aria-labelledby="titulo-ic">
@@ -335,16 +343,37 @@
         <p class="cierre-sim"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico sin costo</a></p>
       </section>
     </div>
+  </div>
   </main>
 
   <footer class="pie">
     <div class="contenedor">
-      <p class="marca">Fullpatrimonio</p>
-      <p class="lema">Propiedades · Inversión · Estrategia</p>
-      <p class="aviso">
-        La información de este sitio es de carácter general y no constituye una recomendación personalizada. Cada decisión se evalúa en una asesoría, según tu caso.
-      </p>
-      <p class="copia"><a href="/privacidad/">Política de privacidad</a> · &copy; 2026 Fullpatrimonio</p>
+      <div class="pie__grid">
+        <div>
+          <p class="marca">Fullpatrimonio</p>
+          <p class="lema">Propiedades · Inversión · Estrategia</p>
+          <p class="pie__texto">Asesoría financiera con Mónica Jofré Flores. Primero tu situación, después la solución.</p>
+        </div>
+        <div>
+          <p class="pie__titulo">Sitio</p>
+          <ul class="pie__lista">
+            <li><a href="/productos/">Productos</a></li>
+            <li><a href="/simulador-inversion/">Simular inversión</a></li>
+            <li><a href="/simulador-seguros/">Simular seguro</a></li>
+            <li><a href="/privacidad/">Política de privacidad</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="pie__titulo">Contacto</p>
+          <ul class="pie__lista">
+            <li><a href="/diagnostico/">Solicitar diagnóstico</a></li>
+            <li><a href="https://wa.me/56934545238?text=Hola%2C%20quiero%20solicitar%20mi%20diagn%C3%B3stico%20financiero.%20WEB" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:m.jofreconsultor@gmail.com">m.jofreconsultor@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="aviso">La información de este sitio es de carácter general y no constituye una recomendación personalizada. Cada decisión se evalúa en una asesoría, según tu caso.</p>
+      <p class="copia">&copy; 2026 Fullpatrimonio</p>
     </div>
   </footer>
 

@@ -1,6 +1,8 @@
 /* Funciones comunes de los simuladores. El cálculo se hace en el navegador; no se envía ningún dato. */
 (function () {
-  var pesos = new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+  var formatoPesos = new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+  // Montos negativos como -$1.000 en lugar de $-1.000.
+  var pesos = { format: function (v) { var r = Math.round(v); return (r < 0 ? "-" : "") + formatoPesos.format(Math.abs(r)); } };
   var numero = new Intl.NumberFormat("es-CL", { maximumFractionDigits: 0 });
   var dec = new Intl.NumberFormat("es-CL", { maximumFractionDigits: 2 });
 

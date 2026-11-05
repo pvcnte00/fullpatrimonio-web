@@ -21,7 +21,7 @@
         <img src="/assets/img/logo-azul.png" alt="Fullpatrimonio" width="800" height="341">
       </a>
       <nav class="menu" aria-label="Menú principal">
-        <button class="menu__boton" type="button" aria-expanded="false" aria-controls="menu-lista">Menú</button>
+        <button class="menu__boton" type="button" aria-expanded="false" aria-controls="menu-lista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menú</button>
         <ul class="menu__lista" id="menu-lista">
           <li><a href="/">Inicio</a></li>
           <li><a href="/productos/" aria-current="page">Productos</a></li>
@@ -29,15 +29,22 @@
           <li><a href="/simulador-seguros/">Simular seguro</a></li>
           <li><a href="/diagnostico/">Contacto</a></li>
           <li><a href="/privacidad/">Privacidad</a></li>
+          <li class="menu__cta"><a href="/diagnostico/">Agenda tu diagnóstico</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="seccion">
+  <main>
+  <section class="cabecera-pagina">
     <div class="contenedor">
-      <h1 class="titulo-pagina">Productos</h1>
-      <p class="seccion__intro">Una explicación breve de cada alternativa, para que llegues a la conversación con una idea clara de qué es cada una.</p>
+      <p class="antetitulo antetitulo--claro">Productos</p>
+      <h1>Qué es cada alternativa</h1>
+        <p>Una explicación breve de cada alternativa, para que llegues a la conversación con una idea clara de qué es cada una.</p>
+    </div>
+  </section>
+  <div class="seccion">
+    <div class="contenedor">
       <p class="nota-general">Estas descripciones son generales. Las condiciones, costos y requisitos de cada producto dependen de la institución que lo ofrece y se revisan en la asesoría.</p>
 
       <!-- Pendiente: ajustar el listado al catálogo validado por Mónica. -->
@@ -45,6 +52,7 @@
         <h2 class="grupo__titulo" id="grupo-inversion">Ahorro e inversión</h2>
         <div class="productos">
           <article class="producto">
+            <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"/><path d="M5 15l4-4 3 3 6-7"/><path d="M14 7h4v4"/></svg></div>
             <h3>Fondos mutuos</h3>
             <p>Un fondo mutuo reúne el dinero de muchas personas y lo invierte en una cartera de instrumentos, como depósitos, bonos o acciones. Lo administra una administradora general de fondos fiscalizada por la Comisión para el Mercado Financiero (CMF). Al invertir compras cuotas, y su valor sube o baja según el resultado de esa cartera.</p>
             <h4>Qué considerar</h4>
@@ -52,6 +60,7 @@
             <a class="enlace-simulador" href="/simulador-inversion/#fondos-mutuos">Ver simulador</a>
           </article>
           <article class="producto">
+            <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></div>
             <h3>Ahorro Previsional Voluntario (APV)</h3>
             <p>Es un ahorro adicional a tu cotización obligatoria, pensado para mejorar tu pensión, que tiene beneficios tributarios. Existen dos regímenes: en el A, el Estado bonifica una parte de lo que ahorras, con un tope anual; en el B, lo que ahorras se descuenta de la base sobre la que pagas impuesto a la renta.</p>
             <h4>Qué considerar</h4>
@@ -59,6 +68,7 @@
             <a class="enlace-simulador" href="/simulador-inversion/#apv">Ver simulador</a>
           </article>
           <article class="producto">
+            <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-5h4v5"/></svg></div>
             <h3>Inversión inmobiliaria</h3>
             <p>Consiste en comprar una propiedad para arrendarla, con el objetivo de recibir ingresos por arriendo y, eventualmente, una ganancia si su valor aumenta. Normalmente se financia en parte con un crédito hipotecario.</p>
             <h4>Qué considerar</h4>
@@ -72,6 +82,7 @@
         <h2 class="grupo__titulo" id="grupo-proteccion">Protección</h2>
         <div class="productos">
           <article class="producto">
+            <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
             <h3>Seguro de vida</h3>
             <p>Entrega un monto a las personas que designes como beneficiarias si falleces mientras la póliza está vigente. Algunos incluyen coberturas adicionales, como invalidez o enfermedades graves, y otros combinan la protección con un componente de ahorro.</p>
             <h4>Qué considerar</h4>
@@ -81,21 +92,49 @@
         </div>
       </section>
 
-      <div class="cierre-sim">
-        <p>¿Quieres saber cuál de estas alternativas se ajusta a tu situación?</p>
-        <p><a class="btn" href="/diagnostico/">Solicita tu diagnóstico sin costo</a></p>
-      </div>
     </div>
+  </div>
+    <section class="banda-cta">
+      <div class="contenedor">
+        <div class="banda-cta__caja">
+          <div>
+            <h2>¿Cuál se ajusta a tu situación?</h2>
+            <p>Lo revisamos contigo en un diagnóstico sin costo.</p>
+          </div>
+          <a class="btn" href="/diagnostico/">Solicita tu diagnóstico</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="pie">
     <div class="contenedor">
-      <p class="marca">Fullpatrimonio</p>
-      <p class="lema">Propiedades · Inversión · Estrategia</p>
-      <p class="aviso">
-        La información de este sitio es de carácter general y no constituye una recomendación personalizada. Cada decisión se evalúa en una asesoría, según tu caso.
-      </p>
-      <p class="copia"><a href="/privacidad/">Política de privacidad</a> · &copy; 2026 Fullpatrimonio</p>
+      <div class="pie__grid">
+        <div>
+          <p class="marca">Fullpatrimonio</p>
+          <p class="lema">Propiedades · Inversión · Estrategia</p>
+          <p class="pie__texto">Asesoría financiera con Mónica Jofré Flores. Primero tu situación, después la solución.</p>
+        </div>
+        <div>
+          <p class="pie__titulo">Sitio</p>
+          <ul class="pie__lista">
+            <li><a href="/productos/">Productos</a></li>
+            <li><a href="/simulador-inversion/">Simular inversión</a></li>
+            <li><a href="/simulador-seguros/">Simular seguro</a></li>
+            <li><a href="/privacidad/">Política de privacidad</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="pie__titulo">Contacto</p>
+          <ul class="pie__lista">
+            <li><a href="/diagnostico/">Solicitar diagnóstico</a></li>
+            <li><a href="https://wa.me/56934545238?text=Hola%2C%20quiero%20solicitar%20mi%20diagn%C3%B3stico%20financiero.%20WEB" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:m.jofreconsultor@gmail.com">m.jofreconsultor@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="aviso">La información de este sitio es de carácter general y no constituye una recomendación personalizada. Cada decisión se evalúa en una asesoría, según tu caso.</p>
+      <p class="copia">&copy; 2026 Fullpatrimonio</p>
     </div>
   </footer>
 
