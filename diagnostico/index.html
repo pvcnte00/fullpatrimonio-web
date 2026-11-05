@@ -20,6 +20,17 @@
       <a href="/" aria-label="Fullpatrimonio, inicio">
         <img src="/assets/img/logo-azul.png" alt="Fullpatrimonio" width="800" height="341">
       </a>
+      <nav class="menu" aria-label="Menú principal">
+        <button class="menu__boton" type="button" aria-expanded="false" aria-controls="menu-lista">Menú</button>
+        <ul class="menu__lista" id="menu-lista">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/productos/">Productos</a></li>
+          <li><a href="/simulador-inversion/">Simular inversión</a></li>
+          <li><a href="/simulador-seguros/">Simular seguro</a></li>
+          <li><a href="/diagnostico/" aria-current="page">Contacto</a></li>
+          <li><a href="/privacidad/">Privacidad</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
@@ -58,10 +69,18 @@
           </label>
         </div>
 
+        <p class="form__ayuda">
+          <strong>¿Por qué lo pedimos?</strong> Usamos tu nombre, correo y WhatsApp solo para contactarte y coordinar tu diagnóstico.
+          Sin tu autorización no podemos registrar tu solicitud.
+          <a href="/privacidad/#por-que-pedimos-tus-datos" target="_blank" rel="noopener">Más información</a>.
+        </p>
+
         <div class="form__check">
           <input id="info_correo" name="info_correo" type="checkbox">
           <label for="info_correo">Quiero recibir por correo información y contenido sobre finanzas (opcional).</label>
         </div>
+
+        <div id="verificacion" class="form__verificacion"></div>
 
         <p id="form-mensaje" class="form__mensaje" role="status" aria-live="polite"></p>
 
@@ -91,5 +110,6 @@
   <script src="/assets/js/config.js"></script>
   <script src="/assets/js/origen.js"></script>
   <script src="/assets/js/formulario.js"></script>
+  <script src="/assets/js/menu.js"></script>
 </body>
 </html>

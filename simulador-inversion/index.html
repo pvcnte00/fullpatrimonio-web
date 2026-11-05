@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador de inversión | Fullpatrimonio</title>
+  <meta name="description" content="Calcula cómo podría crecer tu ahorro en el tiempo, con supuestos explícitos.">
+  <!-- Retirar la etiqueta robots al publicar el sitio definitivo. -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a href="/" aria-label="Fullpatrimonio, inicio">
+        <img src="/assets/img/logo-azul.png" alt="Fullpatrimonio" width="800" height="341">
+      </a>
+      <nav class="menu" aria-label="Menú principal">
+        <button class="menu__boton" type="button" aria-expanded="false" aria-controls="menu-lista">Menú</button>
+        <ul class="menu__lista" id="menu-lista">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/productos/">Productos</a></li>
+          <li><a href="/simulador-inversion/" aria-current="page">Simular inversión</a></li>
+          <li><a href="/simulador-seguros/">Simular seguro</a></li>
+          <li><a href="/diagnostico/">Contacto</a></li>
+          <li><a href="/privacidad/">Privacidad</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="seccion">
+    <div class="contenedor">
+      <h1 class="titulo-pagina">Simulador de inversión</h1>
+      <p class="seccion__intro">Estima cómo podría crecer tu ahorro según el monto, el plazo y la rentabilidad que supongas. Cada calculadora muestra los supuestos que usa. <span id="parametros-fecha"></span></p>
+
+      <nav class="indice-sim" aria-label="Calculadoras disponibles">
+        <a href="#interes-compuesto"><strong>Interés compuesto</strong>Cómo crece un ahorro en el tiempo.<small>Herramienta base</small></a>
+        <a href="#fondos-mutuos"><strong>Fondos mutuos</strong>Proyección en tres escenarios.<small>Riesgo: bajo a alto, según el perfil</small></a>
+        <a href="#apv"><strong>APV</strong>Régimen A o B y beneficio tributario.<small>Riesgo: según el fondo donde inviertas</small></a>
+        <a href="#inmobiliario"><strong>Inversión inmobiliaria</strong>Dividendo, flujo mensual y rentabilidad.<small>Liquidez baja</small></a>
+      </nav>
+
+      <section class="simulador" id="interes-compuesto" aria-labelledby="titulo-ic">
+        <h2 id="titulo-ic">Interés compuesto</h2>
+        <p>El interés compuesto significa que las ganancias de cada período también generan ganancias en los siguientes. Por eso el plazo pesa tanto como el monto.</p>
+
+        <div class="simulador__cuerpo">
+          <form id="form-ic" class="form" novalidate>
+            <div class="form__campo">
+              <label for="ic-inicial">Monto inicial</label>
+              <div class="campo-unidad"><span>$</span><input id="ic-inicial" type="text" inputmode="numeric" autocomplete="off" value="1.000.000"></div>
+            </div>
+            <div class="form__campo">
+              <label for="ic-aporte">Aporte mensual</label>
+              <div class="campo-unidad"><span>$</span><input id="ic-aporte" type="text" inputmode="numeric" autocomplete="off" value="100.000"></div>
+            </div>
+            <div class="form__campo">
+              <label for="ic-plazo">Plazo</label>
+              <div class="campo-unidad"><input id="ic-plazo" type="text" inputmode="numeric" autocomplete="off" value="10"><span>años</span></div>
+            </div>
+            <div class="form__campo">
+              <label for="ic-tasa">Rentabilidad anual supuesta</label>
+              <div class="campo-unidad"><input id="ic-tasa" type="text" inputmode="decimal" autocomplete="off" value="5"><span>%</span></div>
+              <p class="form__pista"><span id="ic-rango-tasa">Entre 0% y 15%.</span> Es un supuesto tuyo, no una rentabilidad ofrecida.</p>
+            </div>
+            <p id="ic-mensaje" class="form__mensaje" role="alert"></p>
+            <button class="btn" type="submit">Calcular</button>
+            <p class="privacidad-calculo">El cálculo se hace en tu navegador. No guardamos ni enviamos los montos que escribes.</p>
+          </form>
+
+          <div class="resultado" id="ic-resultado" hidden aria-live="polite">
+            <p class="resultado__principal">Monto estimado al cabo de <span id="ic-anos"></span></p>
+            <p class="resultado__cifra" id="ic-final"></p>
+            <ul class="resultado__desglose">
+              <li><span><span class="marca-color" style="background:#103E6C"></span>Total aportado</span><strong id="ic-aportado"></strong></li>
+              <li><span><span class="marca-color" style="background:#D8B65C"></span>Intereses estimados</span><strong id="ic-intereses"></strong></li>
+            </ul>
+            <div class="grafico">
+              <p class="grafico__titulo">Saldo estimado al final de cada año</p>
+              <div id="ic-grafico"></div>
+            </div>
+            <details class="detalle">
+              <summary>Ver detalle año a año</summary>
+              <div class="tabla-scroll">
+                <table class="tabla">
+                  <thead><tr><th scope="col">Año</th><th scope="col">Aportado</th><th scope="col">Intereses</th><th scope="col">Saldo</th></tr></thead>
+                  <tbody id="ic-tabla"></tbody>
+                </table>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="supuestos">
+          <h3>Supuestos de este cálculo</h3>
+          <ul>
+            <li>Rentabilidad anual constante de <span class="ic-tasa-texto">5%</span> durante todo el plazo. En la realidad la rentabilidad varía año a año.</li>
+            <li>Los aportes se hacen al final de cada mes y los intereses se capitalizan mensualmente.</li>
+            <li>No considera comisiones, impuestos ni inflación. Los montos están en pesos de cada período, no en pesos de hoy.</li>
+          </ul>
+          <p class="form__pista" id="ic-actualizado"></p>
+        </div>
+
+        <div class="advertencia">
+          <p><strong>Esta es una simulación referencial.</strong> El resultado depende de los supuestos indicados, que pueden no cumplirse. La rentabilidad no está garantizada: puede ser mayor, menor o incluso negativa, y lo que ocurrió en el pasado no asegura lo que pasará. No es una recomendación de inversión ni considera tu situación completa. Para revisar tu caso, agenda una reunión con Mónica.</p>
+        </div>
+        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico sin costo</a></p>
+      </section>
+
+      <section class="simulador" id="fondos-mutuos" aria-labelledby="titulo-fm">
+        <h2 id="titulo-fm">Fondos mutuos</h2>
+        <p>Proyecta un ahorro en fondos mutuos según el perfil de riesgo. Como la rentabilidad de un fondo cambia año a año, el resultado se muestra en tres escenarios.</p>
+        <div class="simulador__cuerpo">
+          <form id="form-fm" class="form" novalidate>
+            <div class="form__campo">
+              <label for="fm-inicial">Monto inicial</label>
+              <div class="campo-unidad"><span>$</span><input id="fm-inicial" type="text" inputmode="numeric" autocomplete="off" value="1.000.000" data-monto></div>
+            </div>
+            <div class="form__campo">
+              <label for="fm-aporte">Aporte mensual</label>
+              <div class="campo-unidad"><span>$</span><input id="fm-aporte" type="text" inputmode="numeric" autocomplete="off" value="100.000" data-monto></div>
+            </div>
+            <div class="form__campo">
+              <label for="fm-plazo">Plazo</label>
+              <div class="campo-unidad"><input id="fm-plazo" type="text" inputmode="numeric" autocomplete="off" value="10"><span>años</span></div>
+            </div>
+            <fieldset class="opciones">
+              <legend>Perfil de riesgo</legend>
+              <label class="opcion"><input type="radio" name="fm-perfil" value="conservador"><span><strong>Conservador · riesgo bajo</strong><small>Prioriza estabilidad. Variaciones acotadas y rentabilidad esperada menor.</small><small id="fm-tasas-conservador"></small></span></label>
+              <label class="opcion"><input type="radio" name="fm-perfil" value="moderado" checked><span><strong>Moderado · riesgo medio</strong><small>Combina instrumentos estables con una parte de acciones.</small><small id="fm-tasas-moderado"></small></span></label>
+              <label class="opcion"><input type="radio" name="fm-perfil" value="agresivo"><span><strong>Agresivo · riesgo alto</strong><small>Mayor proporción en acciones. Puede tener caídas importantes en el camino.</small><small id="fm-tasas-agresivo"></small></span></label>
+            </fieldset>
+            <p id="fm-mensaje" class="form__mensaje" role="alert"></p>
+            <button class="btn" type="submit">Calcular</button>
+            <p class="privacidad-calculo">El cálculo se hace en tu navegador. No guardamos ni enviamos los montos que escribes.</p>
+          </form>
+          <div class="resultado" id="fm-resultado" hidden aria-live="polite">
+            <p class="resultado__principal">Escenario base al cabo de <span id="fm-anos"></span> · <span id="fm-perfil-texto"></span></p>
+            <p class="resultado__cifra" id="fm-base"></p>
+            <ul class="resultado__desglose">
+              <li><span>Desfavorable<small id="fm-desf-tasa"></small></span><strong id="fm-desf"></strong></li>
+              <li><span>Base<small id="fm-base-tasa"></small></span><strong id="fm-base-repite"></strong></li>
+              <li><span>Favorable<small id="fm-fav-tasa"></small></span><strong id="fm-fav"></strong></li>
+              <li><span>Total aportado</span><strong id="fm-aportado"></strong></li>
+              <li class="total"><span>Ganancia en el escenario base</span><strong id="fm-ganancia"></strong></li>
+            </ul>
+            <div class="grafico">
+              <p class="grafico__titulo">Saldo estimado por año</p>
+              <div id="fm-grafico"></div>
+              <p class="leyenda"><span><span class="linea-color linea-color--punteada" style="border-color:#8AA3BD"></span>Desfavorable</span><span><span class="linea-color" style="border-color:#103E6C"></span>Base</span><span><span class="linea-color linea-color--punteada" style="border-color:#D8B65C"></span>Favorable</span></p>
+            </div>
+            <details class="detalle">
+              <summary>Ver detalle año a año</summary>
+              <div class="tabla-scroll"><table class="tabla"><thead><tr><th scope="col">Año</th><th scope="col">Desfavorable</th><th scope="col">Base</th><th scope="col">Favorable</th></tr></thead><tbody id="fm-tabla"></tbody></table></div>
+            </details>
+          </div>
+        </div>
+        <div class="supuestos">
+          <h3>Supuestos de este cálculo</h3>
+          <ul>
+            <li>Rentabilidades anuales constantes de <span class="fm-tasas-texto"></span> para los escenarios desfavorable, base y favorable del perfil elegido, ya descontados los costos del fondo.</li>
+            <li>Los perfiles son referenciales y no representan un fondo específico.</li>
+            <li>Aportes al final de cada mes, con capitalización mensual. No considera impuestos, comisiones de rescate ni inflación.</li>
+          </ul>
+        </div>
+        <div class="advertencia">
+          <p><strong>Esta es una simulación referencial.</strong> El resultado depende de los supuestos indicados, que pueden no cumplirse. La rentabilidad no está garantizada: puede ser mayor, menor o incluso negativa, y lo que ocurrió en el pasado no asegura lo que pasará. No es una recomendación de inversión ni considera tu situación completa. Para revisar tu caso, agenda una reunión con Mónica.</p>
+        </div>
+        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico sin costo</a></p>
+      </section>
+
+      <section class="simulador" id="apv" aria-labelledby="titulo-apv">
+        <h2 id="titulo-apv">Ahorro Previsional Voluntario (APV)</h2>
+        <p>Compara el beneficio tributario de los regímenes A y B según tu renta y tu aporte, y estima cuánto podrías tener al jubilar.</p>
+        <div class="simulador__cuerpo">
+          <form id="form-apv" class="form" novalidate>
+            <div class="form__campo">
+              <label for="apv-renta">Renta líquida imponible mensual</label>
+              <div class="campo-unidad"><span>$</span><input id="apv-renta" type="text" inputmode="numeric" autocomplete="off" value="1.500.000" data-monto></div>
+              <p class="form__pista">Sueldo bruto menos AFP, salud y seguro de cesantía. Aparece en tu liquidación de sueldo.</p>
+            </div>
+            <div class="form__campo">
+              <label for="apv-aporte">Aporte mensual al APV</label>
+              <div class="campo-unidad"><span>$</span><input id="apv-aporte" type="text" inputmode="numeric" autocomplete="off" value="100.000" data-monto></div>
+            </div>
+            <div class="form__campo">
+              <label for="apv-plazo">Años hasta tu jubilación</label>
+              <div class="campo-unidad"><input id="apv-plazo" type="text" inputmode="numeric" autocomplete="off" value="20"><span>años</span></div>
+            </div>
+            <div class="form__campo">
+              <label for="apv-tasa">Rentabilidad anual supuesta</label>
+              <div class="campo-unidad"><input id="apv-tasa" type="text" inputmode="decimal" autocomplete="off" value="5"><span>%</span></div>
+              <p class="form__pista">Es un supuesto tuyo, no una rentabilidad ofrecida.</p>
+            </div>
+            <p id="apv-mensaje" class="form__mensaje" role="alert"></p>
+            <button class="btn" type="submit">Calcular</button>
+            <p class="privacidad-calculo">El cálculo se hace en tu navegador. No guardamos ni enviamos los montos que escribes.</p>
+          </form>
+          <div class="resultado" id="apv-resultado" hidden aria-live="polite">
+            <p class="resultado__principal">Régimen con mayor beneficio anual</p>
+            <p class="resultado__cifra" id="apv-sugerido"></p>
+            <p class="resultado__texto" id="apv-sugerido-texto"></p>
+            <ul class="resultado__desglose">
+              <li><span>Tu tramo de impuesto</span><strong id="apv-tramo"></strong></li>
+              <li><span>Régimen A: bonificación fiscal al año</span><strong id="apv-a-anual"></strong></li>
+              <li><span>Régimen B: menor impuesto al año</span><strong id="apv-b-anual"></strong></li>
+            </ul>
+            <p class="aviso-tope" id="apv-tope-b" hidden>Tu aporte supera el tope del régimen B. El cálculo del régimen B considera solo el tope.</p>
+            <p class="resultado__subtitulo">Al cabo de <span id="apv-anos"></span></p>
+            <ul class="resultado__desglose">
+              <li><span>Total aportado</span><strong id="apv-aportado"></strong></li>
+              <li><span>Saldo estimado con régimen A<small>Incluye la bonificación</small></span><strong id="apv-a-saldo"></strong></li>
+              <li><span>Saldo estimado con régimen B</span><strong id="apv-b-saldo"></strong></li>
+              <li><span>Menor impuesto acumulado con régimen B<small>Queda en tu bolsillo, fuera del APV</small></span><strong id="apv-b-acumulado"></strong></li>
+            </ul>
+            <div class="grafico">
+              <p class="grafico__titulo">Saldo estimado del APV por año</p>
+              <div id="apv-grafico"></div>
+              <p class="leyenda"><span><span class="linea-color" style="border-color:#D8B65C"></span>Régimen A</span><span><span class="linea-color" style="border-color:#103E6C"></span>Régimen B</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="supuestos">
+          <h3>Supuestos de este cálculo</h3>
+          <ul>
+            <li>Régimen A: bonificación de <span id="apv-bonif-texto"></span>, que se suma al saldo al cierre de cada año.</li>
+            <li>Régimen B: el aporte se descuenta de la base del impuesto único de segunda categoría, con topes de <span id="apv-topes-texto"></span>. El ahorro se calcula con la tabla del impuesto usada como referencia.</li>
+            <li>Rentabilidad anual constante de <span class="apv-tasa-texto"></span>. Tu renta y tu aporte se mantienen iguales todos los años.</li>
+            <li>Supone que tu ahorro no supera diez veces tus cotizaciones obligatorias del año, requisito del régimen A. No considera combinar ambos regímenes, otros ingresos ni la declaración anual de impuestos.</li>
+            <li>Si retiras antes de pensionarte, en el régimen A pierdes la bonificación y en el B pagas impuesto sobre lo retirado.</li>
+          </ul>
+          <p class="form__pista" id="apv-param-texto"></p>
+        </div>
+        <div class="advertencia">
+          <p><strong>Esta es una simulación referencial.</strong> El resultado depende de los supuestos indicados, que pueden no cumplirse. La rentabilidad no está garantizada: puede ser mayor, menor o incluso negativa, y lo que ocurrió en el pasado no asegura lo que pasará. No es una recomendación de inversión ni considera tu situación completa. Para revisar tu caso, agenda una reunión con Mónica.</p> <p>Esta simulación tampoco es una asesoría tributaria.</p>
+        </div>
+        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico sin costo</a></p>
+      </section>
+
+      <section class="simulador" id="inmobiliario" aria-labelledby="titulo-inm">
+        <h2 id="titulo-inm">Inversión inmobiliaria</h2>
+        <p>Estima si el arriendo de una propiedad cubriría el dividendo y los gastos, y qué rentabilidad tendría sobre su precio.</p>
+        <div class="simulador__cuerpo">
+          <form id="form-inm" class="form" novalidate>
+            <div class="form__campo">
+              <label for="inm-precio">Precio de la propiedad</label>
+              <div class="campo-unidad"><input id="inm-precio" type="text" inputmode="decimal" autocomplete="off" value="3.000"><span>UF</span></div>
+            </div>
+            <div class="form__campo">
+              <label for="inm-pie">Pie</label>
+              <div class="campo-unidad"><input id="inm-pie" type="text" inputmode="decimal" autocomplete="off" value="20"><span>%</span></div>
+            </div>
+            <div class="form__campo">
+              <label for="inm-tasa">Tasa del crédito hipotecario</label>
+              <div class="campo-unidad"><input id="inm-tasa" type="text" inputmode="decimal" autocomplete="off" value="4,5"><span>% anual</span></div>
+              <p class="form__pista">La tasa de la cotización del banco, no el CAE.</p>
+            </div>
+            <div class="form__campo">
+              <label for="inm-plazo">Plazo del crédito</label>
+              <div class="campo-unidad"><input id="inm-plazo" type="text" inputmode="numeric" autocomplete="off" value="25"><span>años</span></div>
+            </div>
+            <div class="form__campo">
+              <label for="inm-arriendo">Arriendo mensual esperado</label>
+              <div class="campo-unidad"><span>$</span><input id="inm-arriendo" type="text" inputmode="numeric" autocomplete="off" value="550.000" data-monto></div>
+            </div>
+            <div class="form__campo">
+              <label for="inm-gastos">Gastos mensuales a tu cargo</label>
+              <div class="campo-unidad"><span>$</span><input id="inm-gastos" type="text" inputmode="numeric" autocomplete="off" value="40.000" data-monto></div>
+              <p class="form__pista">Contribuciones prorrateadas, gastos comunes que no pague el arrendatario y administración.</p>
+            </div>
+            <div class="form__campo">
+              <label for="inm-seguros">Seguros del crédito</label>
+              <div class="campo-unidad"><span>$</span><input id="inm-seguros" type="text" inputmode="numeric" autocomplete="off" value="15.000" data-monto></div>
+              <p class="form__pista">Desgravamen e incendio, por mes.</p>
+            </div>
+            <div class="form__campo">
+              <label for="inm-vacancia">Vacancia</label>
+              <div class="campo-unidad"><input id="inm-vacancia" type="text" inputmode="decimal" autocomplete="off" value="5"><span>% del año</span></div>
+              <p class="form__pista">Proporción del tiempo sin arrendatario.</p>
+            </div>
+            <div class="form__campo">
+              <label for="inm-mantencion">Mantención</label>
+              <div class="campo-unidad"><input id="inm-mantencion" type="text" inputmode="decimal" autocomplete="off" value="0,5"><span>% anual del precio</span></div>
+            </div>
+            <div class="form__campo">
+              <label for="inm-compra">Gastos de compra</label>
+              <div class="campo-unidad"><input id="inm-compra" type="text" inputmode="decimal" autocomplete="off" value="2"><span>% del precio</span></div>
+              <p class="form__pista">Notaría, inscripción, tasación y otros gastos de la operación.</p>
+            </div>
+            <p id="inm-mensaje" class="form__mensaje" role="alert"></p>
+            <button class="btn" type="submit">Calcular</button>
+            <p class="privacidad-calculo">El cálculo se hace en tu navegador. No guardamos ni enviamos los montos que escribes.</p>
+          </form>
+          <div class="resultado" id="inm-resultado" hidden aria-live="polite">
+            <p class="resultado__principal">Flujo mensual estimado</p>
+            <p class="resultado__cifra" id="inm-flujo"></p>
+            <p class="resultado__texto" id="inm-flujo-texto"></p>
+            <ul class="resultado__desglose">
+              <li><span>Arriendo considerado<small>Descontada la vacancia</small></span><strong id="inm-d-arriendo"></strong></li>
+              <li><span>Dividendo</span><strong id="inm-d-dividendo"></strong></li>
+              <li><span>Seguros del crédito</span><strong id="inm-d-seguros"></strong></li>
+              <li><span>Gastos a tu cargo</span><strong id="inm-d-gastos"></strong></li>
+              <li><span>Reserva de mantención</span><strong id="inm-d-mant"></strong></li>
+            </ul>
+            <p class="resultado__subtitulo">Indicadores</p>
+            <ul class="resultado__desglose">
+              <li><span>Crédito</span><strong id="inm-credito"></strong></li>
+              <li><span>Dividendo en UF</span><strong id="inm-dividendo-uf"></strong></li>
+              <li><span>Capital inicial<small>Pie más gastos de compra</small></span><strong id="inm-capital"></strong></li>
+              <li><span>Rentabilidad bruta sobre el precio<small>Arriendo anual dividido por el precio</small></span><strong id="inm-cap-bruto"></strong></li>
+              <li><span>Rentabilidad neta sobre el precio<small>Descuenta vacancia, gastos y mantención; no el crédito</small></span><strong id="inm-cap-neto"></strong></li>
+              <li><span>Retorno anual sobre tu capital<small>Flujo anual dividido por el capital inicial</small></span><strong id="inm-retorno"></strong></li>
+              <li class="total"><span>Arriendo mínimo para cubrir los costos</span><strong id="inm-equilibrio"></strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="supuestos">
+          <h3>Supuestos de este cálculo</h3>
+          <ul>
+            <li>Crédito a tasa fija con dividendo constante en UF. La tasa mensual es la tasa anual dividida por 12.</li>
+            <li>Los montos en UF se convierten a pesos con un valor de UF de referencia. Arriendo y gastos se mantienen en los valores ingresados.</li>
+            <li>No considera plusvalía, reajustes de arriendo, impuestos, beneficios tributarios ni costos de una venta futura.</li>
+          </ul>
+          <p class="form__pista" id="inm-param-texto"></p>
+        </div>
+        <div class="advertencia">
+          <p><strong>Esta es una simulación referencial.</strong> El resultado depende de los supuestos indicados, que pueden no cumplirse. La rentabilidad no está garantizada: puede ser mayor, menor o incluso negativa, y lo que ocurrió en el pasado no asegura lo que pasará. No es una recomendación de inversión ni considera tu situación completa. Para revisar tu caso, agenda una reunión con Mónica.</p> <p>Esta simulación no es una tasación ni una evaluación de crédito.</p>
+        </div>
+        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico sin costo</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p class="marca">Fullpatrimonio</p>
+      <p class="lema">Propiedades · Inversión · Estrategia</p>
+      <p class="aviso">
+        La información de este sitio es de carácter general y no constituye una recomendación personalizada. Cada decisión se evalúa en una asesoría, según tu caso.
+      </p>
+      <p class="copia"><a href="/privacidad/">Política de privacidad</a> · &copy; 2026 Fullpatrimonio</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/menu.js"></script>
+  <script src="/assets/js/origen.js"></script>
+  <script src="/assets/js/parametros.js"></script>
+  <script src="/assets/js/sim-comun.js"></script>
+  <script src="/assets/js/sim-interes-compuesto.js"></script>
+  <script src="/assets/js/sim-fondos.js"></script>
+  <script src="/assets/js/sim-apv.js"></script>
+  <script src="/assets/js/sim-inmobiliario.js"></script>
+</body>
+</html>

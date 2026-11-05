@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador de seguros | Fullpatrimonio</title>
+  <meta name="description" content="Estima cuánta protección necesitaría tu familia si tu ingreso faltara.">
+  <!-- Retirar la etiqueta robots al publicar el sitio definitivo. -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a href="/" aria-label="Fullpatrimonio, inicio">
+        <img src="/assets/img/logo-azul.png" alt="Fullpatrimonio" width="800" height="341">
+      </a>
+      <nav class="menu" aria-label="Menú principal">
+        <button class="menu__boton" type="button" aria-expanded="false" aria-controls="menu-lista">Menú</button>
+        <ul class="menu__lista" id="menu-lista">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/productos/">Productos</a></li>
+          <li><a href="/simulador-inversion/">Simular inversión</a></li>
+          <li><a href="/simulador-seguros/" aria-current="page">Simular seguro</a></li>
+          <li><a href="/diagnostico/">Contacto</a></li>
+          <li><a href="/privacidad/">Privacidad</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="seccion">
+    <div class="contenedor">
+      <h1 class="titulo-pagina">Simulador de seguros</h1>
+      <p class="seccion__intro">Estima cuánta protección necesitaría tu familia si tu ingreso faltara, según sus gastos, tus deudas y lo que ya tienes ahorrado o asegurado. <span id="parametros-fecha"></span></p>
+
+      <section class="simulador" id="seguro-vida" aria-labelledby="titulo-sv">
+        <h2 id="titulo-sv">Necesidad de seguro de vida</h2>
+        <p>Estima qué monto necesitaría tu familia si tu ingreso faltara, y cuánto de eso ya cubren tus ahorros y los seguros que tienes.</p>
+        <div class="simulador__cuerpo">
+          <form id="form-sv" class="form" novalidate>
+            <div class="form__campo">
+              <label for="sv-gastos">Gastos mensuales de tu familia</label>
+              <div class="campo-unidad"><span>$</span><input id="sv-gastos" type="text" inputmode="numeric" autocomplete="off" value="1.200.000" data-monto></div>
+              <p class="form__pista">Lo que tu familia necesita al mes para mantener su nivel de vida.</p>
+            </div>
+            <div class="form__campo">
+              <label for="sv-anos">Años de apoyo</label>
+              <div class="campo-unidad"><input id="sv-anos" type="text" inputmode="numeric" autocomplete="off" value="15"><span>años</span></div>
+              <p class="form__pista">Por ejemplo, hasta que tu hijo menor termine sus estudios.</p>
+            </div>
+            <div class="form__campo">
+              <label for="sv-deudas">Deudas que quedarían pendientes</label>
+              <div class="campo-unidad"><span>$</span><input id="sv-deudas" type="text" inputmode="numeric" autocomplete="off" value="0" data-monto></div>
+              <p class="form__pista">Créditos de consumo y saldo hipotecario. Si tu crédito hipotecario tiene seguro de desgravamen, no lo incluyas.</p>
+            </div>
+            <div class="form__campo">
+              <label for="sv-educacion">Educación futura de tus hijos</label>
+              <div class="campo-unidad"><span>$</span><input id="sv-educacion" type="text" inputmode="numeric" autocomplete="off" value="0" data-monto></div>
+            </div>
+            <div class="form__campo">
+              <label for="sv-otros">Otros gastos</label>
+              <div class="campo-unidad"><span>$</span><input id="sv-otros" type="text" inputmode="numeric" autocomplete="off" value="0" data-monto></div>
+              <p class="form__pista">Gastos finales u otros compromisos que quieras dejar cubiertos.</p>
+            </div>
+            <div class="form__campo">
+              <label for="sv-ahorros">Ahorros e inversiones disponibles</label>
+              <div class="campo-unidad"><span>$</span><input id="sv-ahorros" type="text" inputmode="numeric" autocomplete="off" value="0" data-monto></div>
+              <p class="form__pista">Lo que tu familia podría usar de inmediato.</p>
+            </div>
+            <div class="form__campo">
+              <label for="sv-seguros">Seguros de vida que ya tienes</label>
+              <div class="campo-unidad"><span>$</span><input id="sv-seguros" type="text" inputmode="numeric" autocomplete="off" value="0" data-monto></div>
+              <p class="form__pista">Monto asegurado total, incluidos los seguros que te da tu empleador.</p>
+            </div>
+            <p id="sv-mensaje" class="form__mensaje" role="alert"></p>
+            <button class="btn" type="submit">Calcular</button>
+            <p class="privacidad-calculo">El cálculo se hace en tu navegador. No guardamos ni enviamos los montos que escribes.</p>
+          </form>
+          <div class="resultado" id="sv-resultado" hidden aria-live="polite">
+            <p class="resultado__principal">Cobertura de referencia que te faltaría</p>
+            <p class="resultado__cifra" id="sv-brecha"></p>
+            <p class="resultado__texto"><span id="sv-brecha-uf"></span> <span id="sv-brecha-texto"></span></p>
+            <p class="resultado__subtitulo">Cómo se calcula</p>
+            <ul class="resultado__desglose">
+              <li><span>Sostener los gastos de tu familia<small id="sv-d-sostener-texto"></small></span><strong id="sv-d-sostener"></strong></li>
+              <li><span>Deudas pendientes</span><strong id="sv-d-deudas"></strong></li>
+              <li><span>Educación futura</span><strong id="sv-d-educacion"></strong></li>
+              <li><span>Otros gastos</span><strong id="sv-d-otros"></strong></li>
+              <li class="total"><span>Total de necesidades</span><strong id="sv-d-necesidades"></strong></li>
+              <li><span>Menos ahorros e inversiones</span><strong id="sv-d-ahorros"></strong></li>
+              <li><span>Menos seguros de vida vigentes</span><strong id="sv-d-seguros"></strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="supuestos">
+          <h3>Supuestos de este cálculo</h3>
+          <ul>
+            <li>Fórmula: gastos mensuales × 12 × años de apoyo + deudas + educación + otros gastos − ahorros − seguros vigentes.</li>
+            <li>Es una suma simple: no considera la rentabilidad que podría generar el monto asegurado ni la inflación.</li>
+            <li>No considera la pensión de sobrevivencia de la AFP ni otros ingresos de tu familia, que podrían reducir el monto necesario.</li>
+            <li>No estima el costo del seguro, que depende de tu edad, tu salud y la aseguradora.</li>
+          </ul>
+          <p class="form__pista" id="sv-param-texto"></p>
+        </div>
+        <div class="advertencia">
+          <p><strong>El monto es una estimación referencial.</strong> La cobertura, el costo y las condiciones reales dependen de cada póliza y de la evaluación de la aseguradora. No es una recomendación ni considera tu situación completa. Para revisar tu caso, agenda una reunión con Mónica.</p>
+        </div>
+        <p class="cierre-sim"><a class="btn" href="/diagnostico/">Agenda tu diagnóstico sin costo</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p class="marca">Fullpatrimonio</p>
+      <p class="lema">Propiedades · Inversión · Estrategia</p>
+      <p class="aviso">
+        La información de este sitio es de carácter general y no constituye una recomendación personalizada. Cada decisión se evalúa en una asesoría, según tu caso.
+      </p>
+      <p class="copia"><a href="/privacidad/">Política de privacidad</a> · &copy; 2026 Fullpatrimonio</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/menu.js"></script>
+  <script src="/assets/js/origen.js"></script>
+  <script src="/assets/js/parametros.js"></script>
+  <script src="/assets/js/sim-comun.js"></script>
+  <script src="/assets/js/sim-seguro-vida.js"></script>
+</body>
+</html>

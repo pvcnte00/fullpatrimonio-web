@@ -3,5 +3,10 @@ window.FP_CONFIG = {
   // URL de la aplicación web de Apps Script (termina en /exec).
   // Mientras esté vacía, el formulario se muestra como no disponible.
   endpoint: "https://script.google.com/macros/s/AKfycby6qXbT-zLTT-fFSHcddJuCPADC8B0TbuJNKzGHV4-wyLcyFLaIqQGr83h1Emg5YxIt/exec",
+  // URL de la aplicación web de parámetros de los simuladores (otro script, termina en /exec).
+  // Vacía: se usan los valores de /assets/data/parametros.json.
+  parametrosEndpoint: "",
+  // Clave pública del widget Turnstile (Cloudflare > Turnstile). Vacía: sin verificación.
+  turnstileSitekey: "",
   whatsapp: "56934545238"
 };

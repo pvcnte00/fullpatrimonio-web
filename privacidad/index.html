@@ -20,6 +20,17 @@
       <a href="/" aria-label="Fullpatrimonio, inicio">
         <img src="/assets/img/logo-azul.png" alt="Fullpatrimonio" width="800" height="341">
       </a>
+      <nav class="menu" aria-label="Menú principal">
+        <button class="menu__boton" type="button" aria-expanded="false" aria-controls="menu-lista">Menú</button>
+        <ul class="menu__lista" id="menu-lista">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/productos/">Productos</a></li>
+          <li><a href="/simulador-inversion/">Simular inversión</a></li>
+          <li><a href="/simulador-seguros/">Simular seguro</a></li>
+          <li><a href="/diagnostico/">Contacto</a></li>
+          <li><a href="/privacidad/" aria-current="page">Privacidad</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
@@ -41,7 +52,8 @@
       </ul>
       <p>No te pedimos claves, números de tarjeta ni datos bancarios por este formulario.</p>
 
-      <h2>3. Para qué usamos tus datos</h2>
+      <h2 id="por-que-pedimos-tus-datos">3. Para qué usamos tus datos y por qué te los pedimos</h2>
+      <p>Te pedimos solo lo necesario para responder tu solicitud: tu nombre, para dirigirnos a ti, y tu correo y WhatsApp, para coordinar la reunión. Necesitamos tu autorización para tratar estos datos; si no la das, no podemos registrar tu solicitud, pero puedes escribirnos directamente por WhatsApp. Los usamos para:</p>
       <ul>
         <li>Contactarte para coordinar tu diagnóstico financiero y la reunión con Mónica.</li>
         <li>Dar seguimiento a tu solicitud.</li>
@@ -53,7 +65,7 @@
       <p>Tratamos tus datos porque nos diste tu consentimiento al marcar la casilla del formulario. Puedes retirarlo en cualquier momento escribiendo al correo indicado en el punto 1.</p>
 
       <h2>5. Con quién se comparten</h2>
-      <p>No vendemos ni cedemos tus datos. Para operar este sitio usamos proveedores que los procesan por encargo, entre ellos Google (planilla de registro y envío de correos), GitHub (alojamiento del sitio) y Cloudflare (servicio de nombres de dominio). Algunos de estos proveedores pueden almacenar información en servidores fuera de Chile. Si incorporamos nuevas herramientas para gestionar contactos o enviar correos, actualizaremos esta página.</p>
+      <p>No vendemos ni cedemos tus datos. Para operar este sitio usamos proveedores que los procesan por encargo, entre ellos Google (planilla de registro y envío de correos), GitHub (alojamiento del sitio) y Cloudflare (servicio de nombres de dominio y verificación antirrobots del formulario). Algunos de estos proveedores pueden almacenar información en servidores fuera de Chile. Si incorporamos nuevas herramientas para gestionar contactos o enviar correos, actualizaremos esta página.</p>
 
       <h2>6. Cuánto tiempo los conservamos</h2>
       <p>Conservamos tus datos mientras sean necesarios para las finalidades descritas o hasta que pidas su eliminación, lo que ocurra primero.</p>
@@ -62,7 +74,7 @@
       <p>Conforme a la normativa chilena sobre protección de datos personales, puedes pedir acceso a tus datos, su rectificación, su supresión, que dejemos de tratarlos o su bloqueo, y retirar tu consentimiento. Escribe al correo del punto 1 indicando tu nombre y qué necesitas. Si no estás conforme con la respuesta, puedes acudir a la autoridad competente en materia de protección de datos.</p>
 
       <h2>8. Cookies y almacenamiento en tu navegador</h2>
-      <p>Este sitio no usa cookies de seguimiento ni de publicidad. Mientras navegas, guarda temporalmente en tu navegador el enlace de origen con el que llegaste, para no perderlo al cambiar de página. Se elimina al cerrar la pestaña. Además, el sitio carga la tipografía desde Google Fonts, por lo que tu navegador se conecta a servidores de Google al abrir las páginas.</p>
+      <p>Este sitio no usa cookies de seguimiento ni de publicidad. Mientras navegas, guarda temporalmente en tu navegador el enlace de origen con el que llegaste, para no perderlo al cambiar de página. Se elimina al cerrar la pestaña. Además, el sitio carga la tipografía desde Google Fonts, por lo que tu navegador se conecta a servidores de Google al abrir las páginas. Al usar el formulario, Cloudflare Turnstile verifica que quien envía los datos es una persona; para ello Cloudflare recibe datos técnicos de tu navegador, como tu dirección IP.</p>
 
       <h2>9. Cambios en esta política</h2>
       <p>Si esta política cambia, publicaremos la versión actualizada en esta misma página con su fecha.</p>
@@ -77,5 +89,7 @@
     </div>
   </footer>
 
+  <script src="/assets/js/menu.js"></script>
+  <script src="/assets/js/origen.js"></script>
 </body>
 </html>

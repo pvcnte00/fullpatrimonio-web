@@ -8,16 +8,57 @@
   var config = window.FP_CONFIG || {};
   var cargadoEn = Date.now();
   var enviando = false;
+  var tokenVerificacion = "";
+  var idWidget = null;
 
   function mostrar(tipo, texto) {
     mensaje.className = "form__mensaje form__mensaje--" + tipo;
     mensaje.textContent = texto;
   }
 
+  function mostrarConsentimiento() {
+    mensaje.className = "form__mensaje form__mensaje--error";
+    mensaje.textContent = "Necesitamos tu autorización para usar tus datos: los usamos solo para contactarte y coordinar tu diagnóstico. ";
+    var enlace = document.createElement("a");
+    enlace.href = "/privacidad/#por-que-pedimos-tus-datos";
+    enlace.target = "_blank";
+    enlace.rel = "noopener";
+    enlace.textContent = "Ver por qué los pedimos";
+    mensaje.appendChild(enlace);
+    formulario.elements["consentimiento"].focus();
+  }
+
+  // Verificación antirrobots Cloudflare Turnstile. Solo se activa si hay clave pública en config.js.
+  function iniciarVerificacion() {
+    if (!config.turnstileSitekey) { return; }
+    window.fpVerificacionLista = function () {
+      idWidget = window.turnstile.render("#verificacion", {
+        sitekey: config.turnstileSitekey,
+        appearance: "interaction-only",
+        language: "es",
+        callback: function (token) { tokenVerificacion = token; },
+        "expired-callback": function () { tokenVerificacion = ""; },
+        "error-callback": function () { tokenVerificacion = ""; }
+      });
+    };
+    var script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=fpVerificacionLista";
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
+  function reiniciarVerificacion() {
+    tokenVerificacion = "";
+    if (idWidget !== null && window.turnstile) { window.turnstile.reset(idWidget); }
+  }
+
   function valor(nombre) {
     var campo = formulario.elements[nombre];
     return campo ? campo.value.trim() : "";
   }
+
+  iniciarVerificacion();
 
   if (!config.endpoint) {
     boton.disabled = true;
@@ -35,7 +76,12 @@
     if (nombre.length < 2) { mostrar("error", "Escribe tu nombre."); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo)) { mostrar("error", "Revisa tu correo electrónico."); return; }
     if (!/^\+?[0-9]{8,15}$/.test(whatsapp)) { mostrar("error", "Revisa tu número de WhatsApp, con código de país (por ejemplo +56 9 1234 5678)."); return; }
-    if (!formulario.elements["consentimiento"].checked) { mostrar("error", "Debes aceptar el uso de tus datos para continuar."); return; }
+    if (!formulario.elements["consentimiento"].checked) { mostrarConsentimiento(); return; }
+
+    if (config.turnstileSitekey && !tokenVerificacion) {
+      mostrar("info", "Estamos verificando que eres una persona. Inténtalo de nuevo en unos segundos.");
+      return;
+    }
 
     var origen = window.FP_ORIGEN || {};
     var datos = {
@@ -46,6 +92,7 @@
       info_correo: formulario.elements["info_correo"].checked,
       sitio_web: valor("sitio_web"),
       tiempo_ms: Date.now() - cargadoEn,
+      turnstile: tokenVerificacion,
       utm_source: origen.utm_source || "",
       utm_medium: origen.utm_medium || "",
       utm_campaign: origen.utm_campaign || "",
@@ -64,12 +111,14 @@
           window.location.href = "/gracias/";
         } else {
           mostrar("error", (resultado && resultado.mensaje) || "No pudimos enviar tu solicitud. Inténtalo de nuevo.");
+          reiniciarVerificacion();
           enviando = false;
           boton.disabled = false;
         }
       })
       .catch(function () {
         mostrar("error", "No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.");
+        reiniciarVerificacion();
         enviando = false;
         boton.disabled = false;
       });

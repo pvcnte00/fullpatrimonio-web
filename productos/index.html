@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Productos | Fullpatrimonio</title>
+  <meta name="description" content="Qué es cada alternativa de ahorro, inversión y protección, explicado de forma simple.">
+  <!-- Retirar la etiqueta robots al publicar el sitio definitivo. -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a href="/" aria-label="Fullpatrimonio, inicio">
+        <img src="/assets/img/logo-azul.png" alt="Fullpatrimonio" width="800" height="341">
+      </a>
+      <nav class="menu" aria-label="Menú principal">
+        <button class="menu__boton" type="button" aria-expanded="false" aria-controls="menu-lista">Menú</button>
+        <ul class="menu__lista" id="menu-lista">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/productos/" aria-current="page">Productos</a></li>
+          <li><a href="/simulador-inversion/">Simular inversión</a></li>
+          <li><a href="/simulador-seguros/">Simular seguro</a></li>
+          <li><a href="/diagnostico/">Contacto</a></li>
+          <li><a href="/privacidad/">Privacidad</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="seccion">
+    <div class="contenedor">
+      <h1 class="titulo-pagina">Productos</h1>
+      <p class="seccion__intro">Una explicación breve de cada alternativa, para que llegues a la conversación con una idea clara de qué es cada una.</p>
+      <p class="nota-general">Estas descripciones son generales. Las condiciones, costos y requisitos de cada producto dependen de la institución que lo ofrece y se revisan en la asesoría.</p>
+
+      <!-- Pendiente: ajustar el listado al catálogo validado por Mónica. -->
+      <section class="grupo" aria-labelledby="grupo-inversion">
+        <h2 class="grupo__titulo" id="grupo-inversion">Ahorro e inversión</h2>
+        <div class="productos">
+          <article class="producto">
+            <h3>Fondos mutuos</h3>
+            <p>Un fondo mutuo reúne el dinero de muchas personas y lo invierte en una cartera de instrumentos, como depósitos, bonos o acciones. Lo administra una administradora general de fondos fiscalizada por la Comisión para el Mercado Financiero (CMF). Al invertir compras cuotas, y su valor sube o baja según el resultado de esa cartera.</p>
+            <h4>Qué considerar</h4>
+            <p>Hay fondos de distinto riesgo y plazo. Cada uno cobra una remuneración, que se descuenta del valor cuota, y algunos cobran una comisión si retiras antes de cierto plazo.</p>
+            <a class="enlace-simulador" href="/simulador-inversion/#fondos-mutuos">Ver simulador</a>
+          </article>
+          <article class="producto">
+            <h3>Ahorro Previsional Voluntario (APV)</h3>
+            <p>Es un ahorro adicional a tu cotización obligatoria, pensado para mejorar tu pensión, que tiene beneficios tributarios. Existen dos regímenes: en el A, el Estado bonifica una parte de lo que ahorras, con un tope anual; en el B, lo que ahorras se descuenta de la base sobre la que pagas impuesto a la renta.</p>
+            <h4>Qué considerar</h4>
+            <p>Conviene uno u otro régimen según tu nivel de ingresos. Si retiras el dinero antes de pensionarte, pierdes parte del beneficio tributario. Puedes contratarlo en distintas instituciones autorizadas, no solo en tu AFP.</p>
+            <a class="enlace-simulador" href="/simulador-inversion/#apv">Ver simulador</a>
+          </article>
+          <article class="producto">
+            <h3>Inversión inmobiliaria</h3>
+            <p>Consiste en comprar una propiedad para arrendarla, con el objetivo de recibir ingresos por arriendo y, eventualmente, una ganancia si su valor aumenta. Normalmente se financia en parte con un crédito hipotecario.</p>
+            <h4>Qué considerar</h4>
+            <p>Requiere pie y gastos de compra. El arriendo debe cubrir el dividendo, las contribuciones, la mantención y los meses sin arrendatario. Es una inversión de baja liquidez: vender una propiedad toma tiempo.</p>
+            <a class="enlace-simulador" href="/simulador-inversion/#inmobiliario">Ver simulador</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="grupo" aria-labelledby="grupo-proteccion">
+        <h2 class="grupo__titulo" id="grupo-proteccion">Protección</h2>
+        <div class="productos">
+          <article class="producto">
+            <h3>Seguro de vida</h3>
+            <p>Entrega un monto a las personas que designes como beneficiarias si falleces mientras la póliza está vigente. Algunos incluyen coberturas adicionales, como invalidez o enfermedades graves, y otros combinan la protección con un componente de ahorro.</p>
+            <h4>Qué considerar</h4>
+            <p>El costo depende de tu edad, tu salud y el monto asegurado. Las exclusiones y los períodos de carencia cambian de una póliza a otra, por lo que conviene revisarlos antes de contratar.</p>
+            <a class="enlace-simulador" href="/simulador-seguros/">Ver simulador</a>
+          </article>
+        </div>
+      </section>
+
+      <div class="cierre-sim">
+        <p>¿Quieres saber cuál de estas alternativas se ajusta a tu situación?</p>
+        <p><a class="btn" href="/diagnostico/">Solicita tu diagnóstico sin costo</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p class="marca">Fullpatrimonio</p>
+      <p class="lema">Propiedades · Inversión · Estrategia</p>
+      <p class="aviso">
+        La información de este sitio es de carácter general y no constituye una recomendación personalizada. Cada decisión se evalúa en una asesoría, según tu caso.
+      </p>
+      <p class="copia"><a href="/privacidad/">Política de privacidad</a> · &copy; 2026 Fullpatrimonio</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/menu.js"></script>
+  <script src="/assets/js/origen.js"></script>
+</body>
+</html>
